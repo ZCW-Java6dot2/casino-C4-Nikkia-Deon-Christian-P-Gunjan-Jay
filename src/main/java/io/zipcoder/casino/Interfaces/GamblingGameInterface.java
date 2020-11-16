@@ -1,4 +1,4 @@
-package Interfaces;
+package io.zipcoder.casino.Interfaces;
 
 public interface GamblingGameInterface {
 
