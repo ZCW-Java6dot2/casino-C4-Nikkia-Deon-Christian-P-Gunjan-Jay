@@ -4,5 +4,5 @@ public interface GamblingPlayer {
 
     void playerWager();
 
-    void playWallet();
+    void playerWallet();
 }
