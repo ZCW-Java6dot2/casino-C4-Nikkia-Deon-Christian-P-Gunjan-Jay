@@ -1,0 +1,144 @@
+@startuml
+
+@startuml
+class Main{
+callMenu()
+}
+
+class Menu {
+selectGame()
+selectPlayer()
+
+}
+class ConsoleInput {
+-Console console
+--
+getIntInput()
+getStringInput()
+getDoubleInput()
+}
+
+class ConsoleOutput {
+-Console console
+--
+printOutput()
+}
+
+interface Game
+{
++handleTurns()
++addPlayer()
++removePlayer()
+}
+interface GamblingGameInterface
+{
++payOut()
++takeBets()
+
+}
+interface GamblingPlayer
+{
++playerWager()
+}
+class DiceGame
+{
+-ArrayList <Die> noOfDice
+-ArrayList <Player> players
+
+}
+class CardGame
+{
+-cardDeck
+-ArrayList <Player> players
+--
++initialCardsGiven(int gameType)
+
+}
+class CardDeck
+{
+Stack <Card>
+--
+shuffleDeck()
+sendShuffledDeck()
+
+}
+class Player
+{
+-balance
+-hand ArrayList<Cards>
+-name
+--
++playerWager()
++setBalance()
++getBalance()
++setName()
++getName()
++getHand()
++setHand()
++addCard()
++removeCard()
++getCard()
++setCard()
+}
+
+class GoFish{
++askForCard(Card.value)
++drawACard()
+
+}
+class BlackJack{
++getPlayerAction(ArrayList<Card> dealersHand)
++getCardValue(Card)
+
+}
+
+class Craps{
+-betField
+-betPassLine
+-----
+getbetField()
+setbetField()
+getbetPassLine()
+setbetPassLine()
+}
+class Die{
+-numberOfSides
+--
++getnumberOfSides()
++rollDie()
+}
+class Card{
+-suit
+-value
+--
++getSuit()
++getValue()
++setSuit()
++setValue()
+}
+class ShootinDice{
+
+compareTwoResults()
+
+}
+Menu <|--Main
+Menu --> CardGame
+Menu --> DiceGame
+Menu --> Player
+ConsoleOutput <-- CardGame
+ConsoleOutput <-- DiceGame
+ConsoleInput <|--Menu
+ConsoleOutput <|-- ConsoleInput
+DiceGame <|-- ShootinDice
+Game <-> DiceGame
+GamblingGameInterface <-> DiceGame
+Player <-> GamblingPlayer
+GamblingGameInterface <-> BlackJack
+CardGame <-> Game
+CardDeck <- Card
+DiceGame -> Die
+DiceGame <|-- Craps
+CardGame -> CardDeck
+CardGame <|-- GoFish
+CardGame <|-- BlackJack
+@enduml
