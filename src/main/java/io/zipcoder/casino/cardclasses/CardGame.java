@@ -1,11 +1,10 @@
 package io.zipcoder.casino.cardclasses;
 
-import io.zipcoder.casino.Game;
 import io.zipcoder.casino.Player;
 
 import java.util.ArrayList;
 
-public class CardGame implements Game {
+public class CardGame {
     ArrayList<Player> players;
     CardDeck deck;
 
