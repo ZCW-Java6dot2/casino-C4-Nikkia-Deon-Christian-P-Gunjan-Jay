@@ -11,6 +11,8 @@ public class Player {
 
     public Player(){
         hand = new ArrayList<Card>();
+        name = "";
+        balance =0d;
     }
 
     // name only constructor
