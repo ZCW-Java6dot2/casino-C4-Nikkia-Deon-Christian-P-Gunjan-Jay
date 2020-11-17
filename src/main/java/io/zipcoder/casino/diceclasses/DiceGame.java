@@ -1,4 +1,5 @@
-package diceclasses;
+package io.zipcoder.casino.diceclasses;
+import io.zipcoder.casino.Interfaces.*;
 
 import java.util.ArrayList;
 
@@ -19,7 +20,7 @@ public class DiceGame<Player> implements Game, GamblingGameInterface {
         this.players = players;
     }
     public void setNoOfDice(ArrayList<Die> noOfDice) {
-        this.noOfDice = noOfDice;
+        this.gameDice = noOfDice;
     }
 
     public void setPlayers(ArrayList<Player> players) {
@@ -27,10 +28,29 @@ public class DiceGame<Player> implements Game, GamblingGameInterface {
     }
 
     public ArrayList<Die> getNoOfDice(){
-        return noOfDice;
+        return gameDice;
     }
     public ArrayList<Player> getPlayers(){
         return players;
     }
 
+    public void payout(Double amount, io.zipcoder.casino.Player player) {
+
+    }
+
+    public void takeBets(Double amount) {
+
+    }
+
+    public void handleTurns() {
+
+    }
+
+    public void addPlayer() {
+
+    }
+
+    public void removePlayer() {
+
+    }
 }
