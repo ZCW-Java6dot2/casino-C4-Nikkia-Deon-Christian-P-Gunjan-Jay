@@ -1,4 +1,4 @@
-package io.zipcoder.casino;
+package io.zipcoder.casino.cardclasses;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ public class Player {
     //private ArrayList<Cards> hand;
     private String name;
 
-    public double playerWager(double wager){
+    public Double playerWager(Double wager){
         return wager;
     }
 
@@ -20,7 +20,7 @@ public class Player {
         return name;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(Double balance) {
         this.balance = balance;
     }
     public double getBalance(){
