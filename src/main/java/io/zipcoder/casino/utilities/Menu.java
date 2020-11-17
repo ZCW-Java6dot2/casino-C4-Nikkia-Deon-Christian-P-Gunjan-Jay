@@ -1,8 +1,12 @@
 package io.zipcoder.casino.utilities;
 
+import io.zipcoder.casino.Player;
+
+import java.util.ArrayList;
+
 public class Menu {
 
-    ArrayList <Player> players = new ArrayList<Player>;
+    ArrayList<Player> players = new ArrayList<Player>;
     Player player = new Player;
     private Console console = new Console(System.in, System.out);
 
