@@ -1,5 +1,7 @@
 package io.zipcoder.casino.cardclasses;
 
+import io.zipcoder.casino.utilities.Player;
+
 import java.util.ArrayList;
 
 public class CardGame {
