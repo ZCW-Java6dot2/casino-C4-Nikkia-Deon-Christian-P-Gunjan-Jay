@@ -1,6 +1,8 @@
 package io.zipcoder.casino.utilities;
 
 import io.zipcoder.casino.Player;
+import io.zipcoder.casino.games.GoFish;
+import jdk.nashorn.internal.ir.IfNode;
 
 import java.util.ArrayList;
 public class Menu {
@@ -25,12 +27,18 @@ public class Menu {
         System.out.println("******* \u001B[36m Welcome to our Casino  \u001B[0m ******* \u001B[36m ");
         System.out.println("\u001B[0m****************************************");
          Integer players= console.getIntegerInput("Please enter the number of Players :");
-
-        for (int i = 0; i < players; i++) {
-            String playerName = console.getStringInput("Please enter your name : ");
-            Double balance = console.getDoubleInput("Please enter the balance : ");
-            this.storePlayers(playerName, balance);
-        }
+         if(players<2)
+         {
+             System.out.println("<<<<< Please add at least 2 Players to play >>>>>>>");
+             this.getPlayersCount();
+         }
+         else {
+             for (int i = 0; i < players; i++) {
+                 String playerName = console.getStringInput("Please enter your name : ");
+                 Double balance = console.getDoubleInput("Please enter the balance : ");
+                 this.storePlayers(playerName, balance);
+             }
+         }
         this.selectCardOrDice();
 
 
@@ -109,6 +117,8 @@ public class Menu {
 
     public void callBlackJackOrGoFish(Integer cardGameChoice) {
         System.out.println("Would call the blackJack or Go Fish");
+        GoFish goFish=new GoFish(players);
+        goFish.runGoFish();
     }
 
     public void callCrapsOrShootinDice(Integer diceGameChoice) {
