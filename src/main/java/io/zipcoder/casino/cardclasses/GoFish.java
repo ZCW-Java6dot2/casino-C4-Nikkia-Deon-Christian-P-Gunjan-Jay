@@ -1,13 +1,14 @@
 package io.zipcoder.casino.cardclasses;
 import io.zipcoder.casino.Player;
 import io.zipcoder.casino.cardclasses.*;
+import io.zipcoder.casino.utilities.Console;
 
 import java.util.ArrayList;
 
 public class GoFish extends CardGame{
 
    //private Card card;
-
+   private static Console console = new Console(System.in, System.out);
 
     public GoFish() {
         super();
@@ -31,10 +32,28 @@ public class GoFish extends CardGame{
            System.out.println(super.getPlayers().get(i).getHand());
        }
 
-
+       this.playerTurn();
     }
 
     public void playerTurn(){
+         String opponent = "";
+         String opponentValue ="";
+        String opponentSuite ="";
+        for (int i = 0; i < players.size(); i++) {
+           opponent= console.getStringInput("Please enter the Player name: ");
+           opponentValue= console.getStringInput("Please enter the value of the card: ");
+            opponentSuite= console.getStringInput("Please enter the suite of the card: ");
+           String opponentTotal = opponentSuite +" of " + opponentValue;
+           //add if to check if the opponent asked is same as player 1
+            for(int j= 0 ; j<players.size();j++)
+            {
+                if(players.get(j).getName().equalsIgnoreCase(opponent))
+                {
+                    this.askForCard(players.get(j) , opponentTotal);
+                }
+            }
+
+        }
         // use arraylist of players
         // askForCard
         // after every turn check player hand for pack
@@ -42,7 +61,9 @@ public class GoFish extends CardGame{
         // increment pack counter
     }
 
-    public void askForCard(Player player, Card card){
+    public void askForCard(Player opponentPlayer, String ){
+        System.out.println(opponentPlayer.getHand().contains(opponentTotal));
+
         // player asks for specific card
         // compare players hand to look for card
         // if player doesnt have card draw from deck
