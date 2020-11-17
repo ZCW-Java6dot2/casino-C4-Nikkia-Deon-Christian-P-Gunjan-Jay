@@ -20,7 +20,7 @@ public class CardDeck {
                 deck.add(newCard);
             }
         }
-     //this.shuffleDeck();
+
     }
 
     public Stack<Card> getDeck() {

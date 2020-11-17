@@ -34,21 +34,19 @@ public class CardGame {
         if (players.size() == 2) {
             for (Player p : players) {
                 System.out.println(p.getName());
-                for (int i = 0; i < 5; i++) {
-                   // deck.getDeck();
-                   // deck.shuffleDeck();
-                    p.addCard(deck.getDeck().pop());
-                    System.out.println(deck.getDeck().size());
-                }
-            }
-        }
-       else {
-            for (Player p : players) {
                 for (int i = 0; i < 7; i++) {
-                   // deck.getDeck();
-                   // deck.shuffleDeck();
+                    p.addCard(deck.getDeck().pop());
+
+                 }
+                deck.shuffleDeck();
+              }
+           }
+        else {
+             for (Player p : players) {
+                for (int i = 0; i < 5; i++) {
                     p.addCard(deck.getDeck().pop());
                 }
+                 deck.shuffleDeck();
             }
         }
     }
