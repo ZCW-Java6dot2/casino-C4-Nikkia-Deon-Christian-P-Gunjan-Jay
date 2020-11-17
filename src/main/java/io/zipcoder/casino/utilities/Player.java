@@ -1,12 +1,18 @@
 package io.zipcoder.casino.utilities;
 
+import io.zipcoder.casino.cardclasses.Card;
+
 import java.util.ArrayList;
 
 public class Player {
 
     private double balance;
-    //private ArrayList<Cards> hand;
+    private ArrayList<Card> hand;
     private String name;
+
+    public Player(){
+        hand = new ArrayList<Card>();
+    }
 
     public Double playerWager(Double wager){
         return wager;
@@ -26,31 +32,33 @@ public class Player {
     public double getBalance(){
         return balance;
     }
-
-    /*
-    public void setHand(ArrayList<Cards> hand){
-
-        this.hand = hand;
-
-   }
-
-   public ArrayList<Cards> getHand() {
+    public ArrayList<Card> getHand() {
         return hand;
     }
+    public void addCard(Card c){
+        hand.add(c);
+    }
+    public void setHand(ArrayList<Card> hand) {
 
-    public void addCard(){}
+        this.hand = hand;
+    }
 
-    public void removeCard(){}
 
-    public Card getCard(){
+    public void removeCard(Card c){
+        hand.remove(c);
+    }
+
+    public Card getCard(Card card){
     return card;
     }
 
-    public void setCard(Card card){
+    /*public void setCard(Card card){
     this.card = card;
     }
 
      */
+
+
 
 
 
