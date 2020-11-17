@@ -1,20 +1,36 @@
 package io.zipcoder.casino.games;
 import io.zipcoder.casino.Player;
-import io.zipcoder.casino.cardclasses.*
+import io.zipcoder.casino.cardclasses.*;
 
 import java.util.ArrayList;
 
 public class GoFish extends CardGame{
 
+   //private Card card;
+   private CardDeck deck;
+
+    public GoFish() {
+        super();
+        //   card=new Card();
+       deck = new CardDeck();
+    }
 
     public GoFish(ArrayList<Player> players) {
         super(players);
     }
 
+   public void runGoFish()
+   {
+       //List of methods
+       super.initialCardsGiven(1);
+       this.initialHand();
+   }
 
-    public void intialHand(){
-        // player.setHand size = 7 if < 2 if # of players > 2
-        // set hand size to 5
+   public void initialHand(){
+       for (int i = 0; i < this.players.size(); i++) {
+           System.out.println(this.players.get(i).getHand());
+       }
+
 
     }
 
@@ -36,10 +52,10 @@ public class GoFish extends CardGame{
         // update hand player 1 and/or  2
     }
 
-    public Card drawCardFromDeck(Player player) {
-        // POP a card from DECK and return it
-
-    }
+   // public Card drawCardFromDeck(Player player) {
+   //     // POP a card from DECK and return it
+  //  re
+  //  }
 
 
     public void updateHand(){
