@@ -1,4 +1,4 @@
-package diceclasses;
+package io.zipcoder.casino.diceclasses;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package io.zipcoder.casino;
+package io.zipcoder.casino.diceclasses;
 
 import junit.framework.TestCase;
 
