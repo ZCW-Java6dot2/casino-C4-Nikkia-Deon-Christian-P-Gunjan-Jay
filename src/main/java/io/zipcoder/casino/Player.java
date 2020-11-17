@@ -5,8 +5,13 @@ import java.util.ArrayList;
 public class Player {
 
     private double balance;
-    //private ArrayList<Cards> hand;
+    private ArrayList<Card> hand;
     private String name;
+    private Card card;
+    public Player(){
+        hand = new ArrayList<Card>();
+    }
+
 
     public Double playerWager(Double wager){
         return wager;
@@ -27,30 +32,6 @@ public class Player {
         return balance;
     }
 
-    /*
-    public void setHand(ArrayList<Cards> hand){
-
-        this.hand = hand;
-
-   }
-
-   public ArrayList<Cards> getHand() {
-        return hand;
-    }
-
-    public void addCard(){}
-
-    public void removeCard(){}
-
-    public Card getCard(){
-    return card;
-    }
-
-    public void setCard(Card card){
-    this.card = card;
-    }
-
-     */
 
 
 
