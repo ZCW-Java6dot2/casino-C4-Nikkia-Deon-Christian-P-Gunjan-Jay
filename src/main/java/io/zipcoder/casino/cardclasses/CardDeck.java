@@ -20,7 +20,7 @@ public class CardDeck {
                 deck.add(newCard);
             }
         }
-
+     //this.shuffleDeck();
     }
 
     public Stack<Card> getDeck() {
@@ -31,5 +31,6 @@ public class CardDeck {
     public void shuffleDeck() {
         Random random = new Random(5);
         Collections.shuffle(deck, random);
+
     }
 }

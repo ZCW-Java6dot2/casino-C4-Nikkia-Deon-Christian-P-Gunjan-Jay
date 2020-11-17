@@ -1,6 +1,7 @@
 package io.zipcoder.casino.utilities;
 
 import io.zipcoder.casino.Player;
+import io.zipcoder.casino.cardclasses.GoFish;
 
 import java.util.ArrayList;
 public class Menu {
@@ -25,24 +26,32 @@ public class Menu {
         System.out.println("******* \u001B[36m Welcome to our Casino  \u001B[0m ******* \u001B[36m ");
         System.out.println("\u001B[0m****************************************");
          Integer players= console.getIntegerInput("Please enter the number of Players :");
-
-        for (int i = 0; i < players; i++) {
-            String playerName = console.getStringInput("Please enter your name : ");
-            Double balance = console.getDoubleInput("Please enter the balance : ");
-            this.storePlayers(playerName, balance);
-        }
+         if(players<2)
+         {
+             System.out.println("<<<<< Please add at least 2 Players to play >>>>>>>");
+             this.getPlayersCount();
+         }
+         else {
+             for (int i = 0; i < players; i++) {
+                 String playerName = console.getStringInput("Please enter your name : ");
+                 Double balance = console.getDoubleInput("Please enter the balance : ");
+                 this.storePlayers(playerName, balance);
+             }
+         }
         this.selectCardOrDice();
 
 
     }
     public void storePlayers(String playerName , Double balance)
     {
-        this.singlePlayer.setName(playerName);
-        this.singlePlayer.setBalance(balance);
-        this.players.add(singlePlayer);
+
+        Player player = new Player();
+        player.setName(playerName);
+        player.setBalance(balance);
+        this.players.add(player);
     }
 
-    public String selectCardOrDice()
+    public void selectCardOrDice()
     {
         System.out.println("****************************");
         System.out.println("1.  Card Game");
@@ -57,12 +66,7 @@ public class Menu {
         }
         else
         this.displayCardOrDiceMenu(cardOrDice);
-        return "****************************\n" +
-                "1.  Card Game\n" +
-                "2.  Dice Game\n" +
-                "3.  Exit\n" +
-                "****************************\n" +
-                "Please select the game you want to play: ";
+
     }
 
     public void displayCardOrDiceMenu(Integer gameSelection)
@@ -97,7 +101,6 @@ public class Menu {
 
     public void displayDiceMenu()
     {
-        // Menu menu = new Menu();
         System.out.println("****************************");
         System.out.println("1.  Craps ");
         System.out.println("2.  ShootinDice ");
@@ -114,6 +117,8 @@ public class Menu {
 
     public void callBlackJackOrGoFish(Integer cardGameChoice) {
         System.out.println("Would call the blackJack or Go Fish");
+        GoFish goFish=new GoFish(this.players);
+        goFish.runGoFish();
     }
 
     public void callCrapsOrShootinDice(Integer diceGameChoice) {
