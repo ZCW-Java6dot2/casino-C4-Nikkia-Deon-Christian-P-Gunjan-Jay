@@ -10,7 +10,6 @@ import org.junit.Test;
 public class MenuTest {
 
 
-
     @Test
     public void storePlayers(){
         //Given
@@ -42,6 +41,5 @@ public class MenuTest {
         //Then
         Assert.assertEquals(expectedPlayers.get(0).getName(),actualName );
     }
-
 
 }
