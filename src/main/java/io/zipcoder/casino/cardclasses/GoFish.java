@@ -61,8 +61,8 @@ public class GoFish extends CardGame{
         // increment pack counter
     }
 
-    public void askForCard(Player opponentPlayer, String ){
-        System.out.println(opponentPlayer.getHand().contains(opponentTotal));
+    public void askForCard(Player opponentPlayer, String stringOfCard){
+        System.out.println(opponentPlayer.getHand().contains(stringOfCard));
 
         // player asks for specific card
         // compare players hand to look for card
