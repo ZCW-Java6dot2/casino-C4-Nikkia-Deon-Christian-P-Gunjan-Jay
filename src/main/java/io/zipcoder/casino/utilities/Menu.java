@@ -44,8 +44,7 @@ public class Menu {
     }
     public void storePlayers(String playerName , Double balance)
     {
-       // this.singlePlayer.setName(playerName);
-        //this.singlePlayer.setBalance(balance);
+
         Player player = new Player();
         player.setName(playerName);
         player.setBalance(balance);
@@ -102,7 +101,6 @@ public class Menu {
 
     public void displayDiceMenu()
     {
-        // Menu menu = new Menu();
         System.out.println("****************************");
         System.out.println("1.  Craps ");
         System.out.println("2.  ShootinDice ");
