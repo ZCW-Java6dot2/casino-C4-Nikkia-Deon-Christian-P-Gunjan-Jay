@@ -1,8 +1,12 @@
 package io.zipcoder.casino.cardclasses;
 
+<<<<<<< HEAD
+import io.zipcoder.casino.Player;
+=======
 
 import io.zipcoder.casino.utilities.Player;
 
+>>>>>>> 8fb3f1a71b78803139d4ee03f2996ecc101556b3
 import org.junit.Assert;
 import org.junit.Test;
 
