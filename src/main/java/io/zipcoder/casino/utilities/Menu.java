@@ -42,7 +42,7 @@ public class Menu {
         this.players.add(singlePlayer);
     }
 
-    public String selectCardOrDice()
+    public void selectCardOrDice()
     {
         System.out.println("****************************");
         System.out.println("1.  Card Game");
@@ -57,12 +57,7 @@ public class Menu {
         }
         else
         this.displayCardOrDiceMenu(cardOrDice);
-        return "****************************\n" +
-                "1.  Card Game\n" +
-                "2.  Dice Game\n" +
-                "3.  Exit\n" +
-                "****************************\n" +
-                "Please select the game you want to play: ";
+
     }
 
     public void displayCardOrDiceMenu(Integer gameSelection)
