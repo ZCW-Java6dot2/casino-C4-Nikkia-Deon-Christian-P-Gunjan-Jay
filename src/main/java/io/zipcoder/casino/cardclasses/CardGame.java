@@ -24,7 +24,7 @@ public class CardGame {
             case 1: //GoFish
                 for (Player p : players){
                     for (int i = 0; i < 7; i++) {
-                        p.addCard(deck.getDeck().pop());
+                     //   p.addCard(deck.getDeck().pop());
                     }
                 }
         }

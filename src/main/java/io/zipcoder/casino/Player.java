@@ -1,9 +1,7 @@
 package io.zipcoder.casino;
 
-import io.zipcoder.casino.cardclasses.Card;
-
 import java.util.ArrayList;
-
+import io.zipcoder.casino.cardclasses.Card;
 public class Player {
 
     private double balance;
@@ -31,6 +29,7 @@ public class Player {
         this.name = name;
         this.balance = balance;
     }
+
 
     public Double playerWager(Double wager){
         return wager;
@@ -77,4 +76,5 @@ public class Player {
     public void setCard(Card card){
         this.card = card;
     }
+
 }
