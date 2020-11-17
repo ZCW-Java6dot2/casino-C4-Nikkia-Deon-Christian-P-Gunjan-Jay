@@ -18,7 +18,7 @@ public class Menu {
                 "     |   o   |o/ \\o   /o    /\n" +
                 "     |     o |/   \\ o/  o  /\n" +
                 "     '-------'     \\/____o/");
-
+        System.out.println("♠️ ♥️♣️ ♦️ ♠️ ♥️♣️ ♠️ ♥️♣️ ♦️♠️ ♥️♣️ ♦️" );
         System.out.println("****************************************");
         System.out.println("******* \u001B[36m Welcome to our Casino  \u001B[0m ******* \u001B[36m ");
         System.out.println("\u001B[0m****************************************");
