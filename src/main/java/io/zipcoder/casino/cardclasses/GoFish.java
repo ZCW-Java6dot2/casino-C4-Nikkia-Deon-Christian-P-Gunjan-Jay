@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
 public class GoFish extends CardGame{
 
-   //private Card card;
+   private Card card;
    private static Console console = new Console(System.in, System.out);
 
     public GoFish() {
         super();
-        //   card=new Card();
+      this.card=card;
        deck = new CardDeck();
     }
 
@@ -30,6 +30,7 @@ public class GoFish extends CardGame{
    public void initialHand(){
        for (int i = 0; i < players.size(); i++) {
            System.out.println(super.getPlayers().get(i).getHand());
+
        }
 
        this.playerTurn();
@@ -49,7 +50,8 @@ public class GoFish extends CardGame{
             {
                 if(players.get(j).getName().equalsIgnoreCase(opponent))
                 {
-                    this.askForCard(players.get(j) , opponentTotal);
+
+                    this.askForCard(players.get(j) ,opponentValue);
                 }
             }
 
@@ -61,8 +63,18 @@ public class GoFish extends CardGame{
         // increment pack counter
     }
 
-    public void askForCard(Player opponentPlayer, String stringOfCard){
-        System.out.println(opponentPlayer.getHand().contains(stringOfCard));
+    public Boolean askForCard(Player opponentPlayer,String opponentValue) {
+      ArrayList<Card> checkCardinHand=opponentPlayer.getHand();
+        for (int i = 0; i < checkCardinHand.size(); i++) {
+          if(checkCardinHand.get(i).getValue().equalsIgnoreCase(opponentValue))
+           // if(opponentPlayer.getHand().contains(card))
+                return true;
+            else
+               return false;
+
+
+        }
+      //  System.out.println(opponentPlayer.getHand().contains(card));
 
         // player asks for specific card
         // compare players hand to look for card
@@ -71,6 +83,7 @@ public class GoFish extends CardGame{
         // updateHand with card
         //ELSE BELOW
         // update hand player 1 and/or  2
+        return false;
     }
 
    // public Card drawCardFromDeck(Player player) {
