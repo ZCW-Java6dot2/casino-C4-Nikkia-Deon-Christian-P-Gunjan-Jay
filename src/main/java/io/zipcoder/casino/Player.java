@@ -9,7 +9,7 @@ public class Player {
     private double balance;
     private ArrayList<Card> hand;
     private String name;
-
+    private Card card;
     public Player(){
         hand = new ArrayList<Card>();
     }
@@ -48,15 +48,15 @@ public class Player {
         hand.remove(c);
     }
 
-    public Card getCard(Card card){
+    public Card getCard(){
     return card;
     }
 
-    /*public void setCard(Card card){
+    public void setCard(Card card){
     this.card = card;
     }
 
-     */
+
 
 
 
