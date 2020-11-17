@@ -1,8 +1,10 @@
 package io.zipcoder.casino.Interfaces;
 
+import io.zipcoder.casino.Player;
+
 public interface GamblingGameInterface {
 
-    void payout();
+    void payout(Double amount, Player player);
 
-    void takeBets();
+    void takeBets(Double amount);
 }
