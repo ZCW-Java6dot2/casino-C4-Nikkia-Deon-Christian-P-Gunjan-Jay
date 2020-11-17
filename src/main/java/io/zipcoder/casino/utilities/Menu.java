@@ -1,5 +1,7 @@
 package io.zipcoder.casino.utilities;
+
 import io.zipcoder.casino.Player;
+
 import java.util.ArrayList;
 public class Menu {
     ArrayList <Player> players = new ArrayList<Player>();
@@ -30,6 +32,8 @@ public class Menu {
             this.storePlayers(playerName, balance);
         }
         this.selectCardOrDice();
+
+
     }
     public void storePlayers(String playerName , Double balance)
     {
@@ -38,7 +42,7 @@ public class Menu {
         this.players.add(singlePlayer);
     }
 
-    public void selectCardOrDice()
+    public String selectCardOrDice()
     {
         System.out.println("****************************");
         System.out.println("1.  Card Game");
@@ -53,6 +57,12 @@ public class Menu {
         }
         else
         this.displayCardOrDiceMenu(cardOrDice);
+        return "****************************\n" +
+                "1.  Card Game\n" +
+                "2.  Dice Game\n" +
+                "3.  Exit\n" +
+                "****************************\n" +
+                "Please select the game you want to play: ";
     }
 
     public void displayCardOrDiceMenu(Integer gameSelection)
