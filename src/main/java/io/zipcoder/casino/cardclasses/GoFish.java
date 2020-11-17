@@ -1,4 +1,4 @@
-package io.zipcoder.casino.games;
+package io.zipcoder.casino.cardclasses;
 import io.zipcoder.casino.Player;
 import io.zipcoder.casino.cardclasses.*;
 
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class GoFish extends CardGame{
 
    //private Card card;
-   private CardDeck deck;
+
 
     public GoFish() {
         super();
@@ -27,8 +27,8 @@ public class GoFish extends CardGame{
    }
 
    public void initialHand(){
-       for (int i = 0; i < this.players.size(); i++) {
-           System.out.println(this.players.get(i).getHand());
+       for (int i = 0; i < players.size(); i++) {
+           System.out.println(super.getPlayers().get(i).getHand());
        }
 
 

@@ -7,7 +7,7 @@ import io.zipcoder.casino.Player;
 import java.util.ArrayList;
 
 public class CardGame {
-   public ArrayList<Player> players;
+   protected ArrayList<Player> players;
     CardDeck deck;
 
     public CardGame(ArrayList<Player> players) {
@@ -33,9 +33,10 @@ public class CardGame {
     private void goFishDecideByPlayers() {
         if (players.size() == 2) {
             for (Player p : players) {
+                System.out.println(p.getName());
                 for (int i = 0; i < 5; i++) {
-                    deck.getDeck();
-                    deck.shuffleDeck();
+                   // deck.getDeck();
+                   // deck.shuffleDeck();
                     p.addCard(deck.getDeck().pop());
                     System.out.println(deck.getDeck().size());
                 }
@@ -44,8 +45,8 @@ public class CardGame {
        else {
             for (Player p : players) {
                 for (int i = 0; i < 7; i++) {
-                    deck.getDeck();
-                    deck.shuffleDeck();
+                   // deck.getDeck();
+                   // deck.shuffleDeck();
                     p.addCard(deck.getDeck().pop());
                 }
             }
