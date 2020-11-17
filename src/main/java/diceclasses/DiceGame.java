@@ -1,5 +1,8 @@
 package diceclasses;
 
+import io.zipcoder.casino.Interfaces.GamblingGameInterface;
+import io.zipcoder.casino.Interfaces.Game;
+
 import java.util.ArrayList;
 
 public class DiceGame<Player> implements Game, GamblingGameInterface {
