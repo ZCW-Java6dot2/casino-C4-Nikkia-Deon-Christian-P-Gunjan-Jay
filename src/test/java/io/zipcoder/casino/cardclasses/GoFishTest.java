@@ -25,10 +25,10 @@ GoFish gofish = new GoFish();
         player.setHand(cards);
          //When
         player.getHand().remove(card1);
-        gofish.removeCardFromPlayer(card1,player);
+        gofish.removeCardFromPlayer(player,cards);
         //Then
         Assert.assertEquals(player.getHand().get(0).getValue() ,"8" );
-        Assert.assertEquals(player.getHand().size() ,1);
+        Assert.assertEquals(player.getHand().size() ,0);
     }
 
     @Test
@@ -65,8 +65,10 @@ GoFish gofish = new GoFish();
         player2.setName("Nikki");
         player2.setBalance(7800D);
         Card card2 = new Card("Diamond","2");
+        Card card3 = new Card("Spades","2");
         ArrayList cardForPlayer2 = new ArrayList<Card>();
         cardForPlayer2.add(card2);
+        cardForPlayer2.add(card3);
         player2.setHand(cardForPlayer2);
         //When
         Boolean actualCard = gofish.askForCard(player1,player2,"2");
