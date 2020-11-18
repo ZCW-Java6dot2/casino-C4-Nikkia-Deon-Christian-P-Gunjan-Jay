@@ -1,9 +1,10 @@
 package io.zipcoder.casino.diceclasses;
 import io.zipcoder.casino.Interfaces.*;
+import io.zipcoder.casino.Player;
 
 import java.util.ArrayList;
 
-public class DiceGame<Player> implements Game, GamblingGameInterface {
+public class DiceGame implements Game, GamblingGameInterface {
 
     private ArrayList<Die> gameDice;
     private ArrayList<Player> players;
@@ -42,15 +43,11 @@ public class DiceGame<Player> implements Game, GamblingGameInterface {
 
     }
 
-    public void handleTurns() {
+    public void addPlayer(Player player) {
 
     }
 
-    public void addPlayer() {
-
-    }
-
-    public void removePlayer() {
+    public void removePlayer(Player player) {
 
     }
 }

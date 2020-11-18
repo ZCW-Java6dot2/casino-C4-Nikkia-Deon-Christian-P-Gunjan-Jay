@@ -32,22 +32,24 @@ public class Menu {
              this.getPlayersCount();
          }
          else {
+             Integer playNumber =1;
              for (int i = 0; i < players; i++) {
                  String playerName = console.getStringInput("Please enter your name : ");
                  Double balance = console.getDoubleInput("Please enter the balance : ");
-                 this.storePlayers(playerName, balance);
+                 this.storePlayers(playerName, balance,playNumber++);
              }
          }
         this.selectCardOrDice();
 
 
     }
-    public void storePlayers(String playerName , Double balance)
+    public void storePlayers(String playerName , Double balance, Integer playerNumber)
     {
 
         Player player = new Player();
         player.setName(playerName);
         player.setBalance(balance);
+        player.setPlayerNumber(playerNumber);
         this.players.add(player);
     }
 
@@ -103,7 +105,7 @@ public class Menu {
     {
         System.out.println("****************************");
         System.out.println("1.  Craps ");
-        System.out.println("2.  ShootinDice ");
+        System.out.println("2.  High Roller ");
         System.out.println("3.  Go Back to previous Menu");
         System.out.println("****************************");
         Integer diceGameChoice = console.getIntegerInput("Please select the game you want to play:  ");
@@ -112,17 +114,25 @@ public class Menu {
             this.selectCardOrDice();
         }
         else
-        this.callCrapsOrShootinDice(diceGameChoice);
+        this.callCrapsOrHighRoller(diceGameChoice);
     }
 
     public void callBlackJackOrGoFish(Integer cardGameChoice) {
-      //  System.out.println("Would call the blackJack or Go Fish");
-        GoFish goFish=new GoFish(this.players);
-        goFish.runGoFish();
+        switch(cardGameChoice)
+        {
+            case 1 : //blackJack method.
+            case 2 :GoFish goFish=new GoFish(this.players);
+                    goFish.runGoFish();
+                    break;
+            case 3 :
+                this.selectCardOrDice();
+                break;
+        }
+
     }
 
-    public void callCrapsOrShootinDice(Integer diceGameChoice) {
-        System.out.println("Would call the CrapsORShootin");
+    public void callCrapsOrHighRoller(Integer diceGameChoice) {
+        System.out.println("Would call the CrapsORHighRoller");
 
     }
 
