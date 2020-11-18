@@ -37,7 +37,7 @@ public class CardGame implements Game{
                     p.addCard(deck.getDeck().pop());
 
                  }
-                deck.shuffleDeck();
+               deck.shuffleDeck();
               }
            }
         else {
@@ -45,7 +45,7 @@ public class CardGame implements Game{
                 for (int i = 0; i < 5; i++) {
                     p.addCard(deck.getDeck().pop());
                 }
-                 deck.shuffleDeck();
+               deck.shuffleDeck();
             }
         }
     }
