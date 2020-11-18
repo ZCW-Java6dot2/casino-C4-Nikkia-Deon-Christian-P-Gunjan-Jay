@@ -9,13 +9,13 @@ import java.util.ArrayList;
 
 public class DiceGame implements Game, GamblingGameInterface {
 
-    private ArrayList<Die> gameDice;
-    private ArrayList<Player> players;
+    protected ArrayList<Die> gameDice;
+    protected ArrayList<Player> players;
 
 
 
     public DiceGame(Integer numOfDie, ArrayList<Player> players) {
-        ArrayList<Die> gameDice = new ArrayList<Die>();
+        gameDice = new ArrayList<Die>();
         for (int i = 0; i < numOfDie; i++) {
             gameDice.add(new Die(6));
 
@@ -48,9 +48,24 @@ public class DiceGame implements Game, GamblingGameInterface {
 
     public void addPlayer(Player player) {
 
+
+    }
+
+
+    public void addPlayer(Player player) {
+        players.add(player);
+
     }
 
     public void removePlayer(Player player) {
+        players.remove(player);
+
+
+
+
+    }
+
+
 
     }
 }
