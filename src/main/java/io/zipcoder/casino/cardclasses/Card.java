@@ -1,6 +1,8 @@
 package io.zipcoder.casino.cardclasses;
 
-public class Card {
+import java.util.Comparator;
+
+public class Card implements Comparable<Card> {
     private String suit;
     private String value;
 
@@ -21,4 +23,10 @@ public class Card {
     public String toString(){
         return (value + " of " + suit);
     }
+
+    @Override
+    public int compareTo(Card c){
+        return this.getValue().compareTo(c.getValue());
+    }
+
 }
