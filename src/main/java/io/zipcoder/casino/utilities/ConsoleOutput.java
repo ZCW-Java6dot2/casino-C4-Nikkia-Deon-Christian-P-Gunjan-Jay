@@ -6,6 +6,9 @@ public class ConsoleOutput {
 
     private Console console = new Console(System.in, System.out);
 
+    public Console getConsole(){
+        return this.console;
+    }
 
 
 }

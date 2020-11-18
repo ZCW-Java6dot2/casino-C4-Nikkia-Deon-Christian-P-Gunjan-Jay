@@ -72,8 +72,8 @@ public class Player {
         hand.remove(c);
     }
 
-    public Card getCard(){
-        return card;
+    public Card getCard(Object card){
+        return this.card;
     }
 
     public void setCard(Card card){
