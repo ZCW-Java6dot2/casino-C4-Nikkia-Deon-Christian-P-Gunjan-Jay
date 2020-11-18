@@ -20,7 +20,7 @@ public class CardDeck {
                 deck.add(newCard);
             }
         }
-     //this.shuffleDeck();
+
     }
 
     public Stack<Card> getDeck() {
@@ -29,7 +29,10 @@ public class CardDeck {
 
 
     public void shuffleDeck() {
-        Random random = new Random(5);
+        Random seed = new Random(52);
+
+        Integer seedGenerated = seed.nextInt(52);
+        Random random = new Random(seedGenerated);
         Collections.shuffle(deck, random);
 
     }
