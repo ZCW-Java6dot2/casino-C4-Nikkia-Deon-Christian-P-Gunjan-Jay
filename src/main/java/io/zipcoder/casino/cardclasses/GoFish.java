@@ -7,13 +7,14 @@ import java.util.ArrayList;
 
 public class GoFish extends CardGame{
 
-   //private Card card;
+   private Card card;
    private static Console console = new Console(System.in, System.out);
 
     public GoFish() {
         super();
         //   card=new Card();
        deck = new CardDeck();
+       this.card = card;
     }
 
     public GoFish(ArrayList<Player> players) {
