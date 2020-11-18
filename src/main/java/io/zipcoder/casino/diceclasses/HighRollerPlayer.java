@@ -1,6 +1,9 @@
-package io.zipcoder.casino;
+package io.zipcoder.casino.diceclasses;
 
-public class HighRollerPlayer {
+import io.zipcoder.casino.Interfaces.HighRollEntrant;
+import io.zipcoder.casino.Player;
+
+public class HighRollerPlayer implements HighRollEntrant {
     private Integer currentRoll;
     private Player player;
     private Boolean activeRoller;
@@ -20,5 +23,15 @@ public class HighRollerPlayer {
 
     public void setCurrentRoll(Integer currentRoll) {
         this.currentRoll = currentRoll;
+    }
+
+    @Override
+    public void setActiveRoller(Boolean yn) {
+
+    }
+
+    @Override
+    public Boolean getActiveRoller() {
+        return null;
     }
 }
