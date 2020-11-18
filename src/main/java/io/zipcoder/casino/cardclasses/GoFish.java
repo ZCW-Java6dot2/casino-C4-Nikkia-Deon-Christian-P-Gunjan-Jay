@@ -1,6 +1,5 @@
 package io.zipcoder.casino.cardclasses;
 import io.zipcoder.casino.Player;
-import io.zipcoder.casino.cardclasses.*;
 import io.zipcoder.casino.utilities.Console;
 import java.util.Collections;
 import java.util.ArrayList;
@@ -12,8 +11,7 @@ public class GoFish extends CardGame{
 
     public GoFish() {
         super();
-      //this.card=card;
-       deck = new CardDeck();
+        deck = new CardDeck();
     }
 
     public GoFish(ArrayList<Player> players) {
@@ -39,21 +37,30 @@ public class GoFish extends CardGame{
          String opponent = "";
          String opponentValue ="";
        // String opponentSuite ="";
+        //display menu to select player
         for (int i = 0; i < players.size(); i++) {
            opponent= console.getStringInput(players.get(i).getName().toUpperCase() + " Please enter the other player name: ");
-           opponentValue= console.getStringInput("Please enter the value of the card: ");
-          //  opponentSuite= console.getStringInput("Please enter the suite of the card: ");
-           //String opponentTotal = opponentSuite +" of " + opponentValue;
-           //add if to check if the opponent asked is same as player 1
-            for(int j= 0 ; j<players.size();j++)
-            {
-               // if(players.get(i).getName().equalsIgnoreCase(opponent))
-                if(players.get(j).getName().equalsIgnoreCase(opponent))
-                {
+            Boolean flagPlayerfound=false;
+           for(int k=0;k<players.size();k++)
+           {
 
-                    this.askForCard(players.get(i),players.get(j) ,opponentValue);
-                }
-            }
+               if(players.get(k).getName().equalsIgnoreCase(opponent))
+                   flagPlayerfound=true;
+                   else
+                   flagPlayerfound=false;
+           }
+           if(flagPlayerfound) {
+               opponentValue = console.getStringInput("Please enter the value of the card: ");
+               //add if to check if the opponent asked is same as player 1
+               for (int j = 0; j < players.size(); j++) {
+                   if (players.get(j).getName().equalsIgnoreCase(opponent)) {
+                       this.askForCard(players.get(i), players.get(j), opponentValue);
+                   }
+
+               }
+           }
+           else
+               System.out.println("Player not found , Please try again..");
 
         }
         // use arraylist of players
@@ -64,14 +71,19 @@ public class GoFish extends CardGame{
     }
 
     public void askForCard(Player dealerPlayer ,Player opponentPlayer,String opponentValue) {
-      ArrayList<Card> checkCardinHand=opponentPlayer.getHand();
+      ArrayList<Card> opponentPlayerHand=opponentPlayer.getHand();
       Boolean cardFound=false;
-      Collections.sort(checkCardinHand);
-        for (int i = 0; i < checkCardinHand.size(); i++) {
-            if (checkCardinHand.get(i).getValue().equalsIgnoreCase(opponentValue)) {
+      //  System.out.println("Before"+ opponentPlayerHand);;
+      Collections.sort(opponentPlayerHand);
+      //  System.out.println("After"+ opponentPlayerHand);;
+
+        for (int i = 0; i < opponentPlayerHand.size(); i++) {
+            if (opponentPlayerHand.get(i).getValue().equalsIgnoreCase(opponentValue)) {
                 cardFound=true;
-                updateHand(dealerPlayer, checkCardinHand, i);
+                //updateHand(dealerPlayer, opponentPlayerHand, i);
                 //check if pack
+                 addCardToHand(dealerPlayer ,opponentPlayerHand.get(i));
+                 removeCardFromPlayer(opponentPlayerHand.get(i),opponentPlayer);
 
             }
         }
@@ -80,12 +92,21 @@ public class GoFish extends CardGame{
                     System.out.println("Go Fish...." + dealerPlayer.getName().toUpperCase());
                     dealerPlayer.addCard(deck.getDeck().pop());
             }
-               checkPack();
+               checkPack(dealerPlayer);
 
         }
 
+    public void removeCardFromPlayer(Card card, Player opponentPlayer) {
+        opponentPlayer.getHand().remove(card);
+    }
 
-         // player asks for specific card -DONE
+    public void addCardToHand(Player dealerPlayer, Card card) {
+
+        dealerPlayer.addCard(card);
+      //  return dealerPlayer;
+
+    }
+    // player asks for specific card -DONE
         // compare players hand to look for card -DONE
         // if player doesnt have card draw from deck -DONE
         // card  = drawCardFromDeck(Player 1)
@@ -94,20 +115,33 @@ public class GoFish extends CardGame{
         // update hand player 1 and/or  2
 
     //}
-    private void updateHand(Player dealerPlayer, ArrayList<Card> checkCardinHand, int i) {
-        dealerPlayer.addCard(checkCardinHand.get(i));
-        checkCardinHand.remove(i);
-    }
+//    private void updateHand(Player dealerPlayer, ArrayList<Card> checkCardinHand, int i) {
+//        System.out.println("The card of " + checkCardinHand.get(i).getValue() +" "+checkCardinHand.get(i).getSuit() + " has been given to " + dealerPlayer.getName().toUpperCase());
+//        //System.out.println("The card of " + checkCardinHand.get(i).getValue() +" "+checkCardinHand.get(i).getSuit() + " has been removed from);
+//      //  dealerPlayer.addCard(checkCardinHand.get(i));
+//       // checkCardinHand.remove(i);
+//    }
 
     // public Card drawCardFromDeck(Player player) {
    //     // POP a card from DECK and return it
-  //  re
+
   //  }
 
 
-    public void checkPack(){
-        // check for 4 cards of same
-        // do this when player.addCard is used
+    public Integer checkPack(Player dealerPlayer){
+        Collections.sort(dealerPlayer.getHand());
+        Integer packCounter=0;
+        for (int i=0 ; i < dealerPlayer.getHand().size();i++)
+        {
+
+            //try using iterator
+         //   if(dealerPlayer.getHand().get(i).getValue() == dealerPlayer.getHand().get(i+1).getValue())
+                packCounter++;
+               //remove from dealer hand
+
+        }
+
+        return packCounter;
     }
 
     public void packCounter(){
