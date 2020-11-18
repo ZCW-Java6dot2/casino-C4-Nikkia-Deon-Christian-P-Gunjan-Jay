@@ -36,4 +36,13 @@ public class CardDeck {
         Collections.shuffle(deck, random);
 
     }
+
+    public Card drawACard() {
+        if (deck.peek() != null) {
+            deck.pop();
+        } else {
+            return null;
+        }
+        return null;
+    }
 }

@@ -45,9 +45,24 @@ public class DiceGame implements Game, GamblingGameInterface {
 
     public void addPlayer(Player player) {
 
+
+    }
+
+
+    public void addPlayer(Player player) {
+        players.add(player);
+
     }
 
     public void removePlayer(Player player) {
+        players.remove(player);
+
+
+
+
+    }
+
+
 
     }
 }
