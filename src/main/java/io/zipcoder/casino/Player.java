@@ -8,6 +8,7 @@ public class Player {
     private ArrayList<Card> hand;
     private String name;
     private Card card;
+    //player number
 
     public Player(){
         hand = new ArrayList<Card>();
