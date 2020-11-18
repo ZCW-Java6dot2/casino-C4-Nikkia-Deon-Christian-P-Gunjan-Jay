@@ -1,10 +1,12 @@
 package io.zipcoder.casino.Interfaces;
 
+import io.zipcoder.casino.Player;
+
 public interface Game {
 
-    void handleTurns();
+    //void handleTurns();
 
-    void addPlayer();
+    void addPlayer(Player player);
 
-    void removePlayer();
+    void removePlayer(Player player);
 }

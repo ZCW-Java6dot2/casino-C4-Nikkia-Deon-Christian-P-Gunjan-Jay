@@ -21,7 +21,7 @@ public class MenuTest {
         expectedPlayers.add(player);
 
         //When
-        menu.storePlayers(player.getName(),player.getBalance());
+        menu.storePlayers(player.getName(),player.getBalance(),1);
         //Then
         Assert.assertEquals(expectedPlayers.size(), menu.getPlayers().size());
     }
@@ -35,7 +35,7 @@ public class MenuTest {
         Menu menu = new Menu();
         ArrayList<Player> expectedPlayers = new ArrayList<Player>();
         expectedPlayers.add(player);
-        menu.storePlayers(player.getName(),player.getBalance());
+        menu.storePlayers(player.getName(),player.getBalance(),1);
         //When
         String actualName = menu.getPlayers().get(0).getName();
         //Then
