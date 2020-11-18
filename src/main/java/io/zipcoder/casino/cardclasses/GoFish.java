@@ -33,22 +33,21 @@ public class GoFish extends CardGame {
 
     //Display Initial hands given and go to next method playerTurn()
     public void displayInitialHand() {
-      //  console.println("***************************************************************************************************************");
+
         for (int i = 0; i < players.size(); i++) {
             Collections.sort(super.getPlayers().get(i).getHand());
             console.println("\u001B[36mHand for Player > %s\u001B[0m is %s", players.get(i).getName().toUpperCase(), super.getPlayers().get(i).getHand());
         }
-     //   console.println("***************************************************************************************************************");
 
-        this.playerTurn();
+       this.playerTurn();
     }
  // Displays hands which are manipulated during the game.
     public void printHand() {
-       // console.println("***************************************************************************************************************");
+
         for (int i = 0; i < players.size(); i++) {
+            Collections.sort(super.getPlayers().get(i).getHand());
             console.println("\u001B[36mHand for Player > %s\u001B[0m is %s", players.get(i).getName().toUpperCase(), super.getPlayers().get(i).getHand());
         }
-       // console.println("***************************************************************************************************************");
     }
 
 // List the players for selection and accept the value
@@ -111,7 +110,7 @@ public class GoFish extends CardGame {
         if (!cardFound) {
             console.println("\u001B[36mGo Fish....%s", dealerPlayer.getName().toUpperCase());
             dealerPlayer.addCard(deck.getDeck().pop());
-            console.println("Card %s added to your hand %s from the deck\u001B[0m" , dealerPlayer.getHand().get(dealerPlayer.getHand().size()-1), dealerPlayer.getName().toUpperCase());
+            console.println("Card %s added to your hand from the deck %s\u001B[0m" , dealerPlayer.getHand().get(dealerPlayer.getHand().size()-1), dealerPlayer.getName().toUpperCase());
             console.println("***************************************************************************************************************");
         }
     }
@@ -143,16 +142,13 @@ public class GoFish extends CardGame {
                 {
                     packInCard.add(dealerPlayer.getHand().get(j+1));
                 }
-
             }
         }
         // System.out.println(packInCard);
-         removePackFromHand(countDuplicates,packInCard,dealerPlayer,dealerPlayer.getPlayerNumber());
+         removePackFromHand(countDuplicates,packInCard,dealerPlayer,playerNumber);
 
         return countDuplicates;
     }
-
-
 
     public void removePackFromHand(Integer countDuplicates , ArrayList<Card> packCards , Player dealerPlayer,Integer playerNumber){
 
@@ -160,7 +156,6 @@ public class GoFish extends CardGame {
                for (int i = 0; i < packCards.size(); i++) {
                 if (dealerPlayer.getHand().get(0).equals(packCards.get(i))) {
                     dealerPlayer.getHand().remove(packCards.get(i));
-
                 }
 
             }
@@ -178,8 +173,6 @@ public class GoFish extends CardGame {
         }
 
     }
-
-
     public void declareWinner(){
         //check for each player the pack count
 
