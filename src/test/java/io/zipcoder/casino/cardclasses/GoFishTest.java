@@ -100,6 +100,65 @@ GoFish gofish = new GoFish();
 
     }
 
+    @Test
+    public void CheckPackTest(){
+        //Given
+        Player player1 = new Player();
+        player1.setName("gunjan");
+        player1.setBalance(4500D);
+        Card card1 = new Card("Spades","8");
+        Card card2 = new Card("Clubs","8");
+        Card card3 = new Card("Hearts","8");
+        Card card4 = new Card("Diamond","8");
+        Card card5 = new Card("Diamond","Jack");
+        ArrayList cardForPlayer1 = new ArrayList<Card>();
+        cardForPlayer1.add(card1);
+        cardForPlayer1.add(card2);
+        cardForPlayer1.add(card3);
+        cardForPlayer1.add(card4);
+        cardForPlayer1.add(card5);
+        player1.setHand(cardForPlayer1);
 
+        //When
+        Integer actual = gofish.checkPack(player1);
+
+        //Then
+        Assert.assertEquals(Integer.valueOf("3"),actual );
+
+    }
+
+    @Test
+    public void removePackFromHandTest(){
+        //Given
+        Player player1 = new Player();
+        player1.setName("gunjan");
+        player1.setBalance(4500D);
+        Card card1 = new Card("Spades","8");
+        Card card2 = new Card("Clubs","8");
+        Card card3 = new Card("Clubs","8");
+        Card card4 = new Card("Diamond","8");
+        Card card5 = new Card("Spades","Jack");
+        Card card6 = new Card("Clubs","5");
+        ArrayList cardForPlayer1 = new ArrayList<Card>();
+        cardForPlayer1.add(card1);
+        cardForPlayer1.add(card2);
+        cardForPlayer1.add(card3);
+        cardForPlayer1.add(card4);
+        cardForPlayer1.add(card5);
+        cardForPlayer1.add(card6);
+        player1.setHand(cardForPlayer1);
+
+        ArrayList cardinPack = new ArrayList<Card>();
+        cardinPack.add(card1);
+        cardinPack.add(card2);
+        cardinPack.add(card3);
+        cardinPack.add(card4);
+
+        //When
+        gofish.removePackFromHand(3,cardinPack,player1);
+        //Then
+        Assert.assertEquals(2,player1.getHand().size());
+
+    }
 
 }
