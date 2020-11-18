@@ -11,6 +11,7 @@ public class HighRollerNpc implements HighRollEntrant {
 
     public HighRollerNpc(Player player) {
         this.player = player;
+        this.activeRoller = true;
     }
 
     public Double getWallet() {

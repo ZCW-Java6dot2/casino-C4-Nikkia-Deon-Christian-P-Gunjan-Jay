@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class HighRoller {
     Die dice;
-    HighRollerPlayer player;
+    HighRollerPlayer player1;
     HighRollerNpc npc1;
     HighRollerNpc npc2;
     HighRollerNpc npc3;
@@ -28,7 +28,7 @@ public class HighRoller {
         npc2 = new HighRollerNpc(player3);
         npc3 = new HighRollerNpc(player4);
         dice = new Die(6);
-        this.player = new HighRollerPlayer(player);
+        this.player1 = new HighRollerPlayer(player);
     }
 
     public void runHighRoller(){
@@ -43,13 +43,12 @@ public class HighRoller {
                 System.out.println("Nah fam not today");
                 gameStart();
             }
-            player.getPlayer().setBalance(player.getPlayer().getBalance() - userInput);
+            player1.getPlayer().setBalance(player1.getPlayer().getBalance() - userInput);
             prizePool += userInput;
             System.out.println("Npcs place your bet");
-            prizePool += npcBet(npc1);
-            prizePool += npcBet(npc2);
-            prizePool += npcBet(npc3);
-            prizePool += userInput + npcBet(npc1) + npcBet(npc2) + npcBet(npc3);
+            System.out.println(prizePool += npcBet(npc1));
+            System.out.println(prizePool += npcBet(npc2));
+            System.out.println(prizePool += npcBet(npc3));
             System.out.println("Roll your dice");
             diceRollResults();
             checkForWinner();
@@ -68,7 +67,7 @@ public class HighRoller {
 
     }
     public Double npcBet(HighRollerNpc npc){
-        double x = (Math.random()*((10-50)+1))+10;
+        double x = (Math.random()*((10-50)+1)+10);
         npc.setWallet(npc.getWallet() - x);
         return x;
     }
@@ -79,9 +78,9 @@ public class HighRoller {
     }
 
     public void diceRollResults(){
-        if (player.getActiveRoller()) {
-            player.setCurrentRoll(diceRoll());
-            System.out.println(player.getPlayer().getName() + "Rolled " + player.getCurrentRoll());
+        if (player1.getActiveRoller()) {
+            player1.setCurrentRoll(diceRoll());
+            System.out.println(player1.getPlayer().getName() + "Rolled " + player1.getCurrentRoll());
         }
         if (npc1.getActiveRoller()) {
             npc1.setCurrentRoll(diceRoll());
@@ -101,7 +100,7 @@ public class HighRoller {
     public Boolean checkForWinner(){
         ArrayList<HighRollEntrant> players = new ArrayList<HighRollEntrant>();
         ArrayList<HighRollEntrant> winners = new ArrayList<HighRollEntrant>();
-        players.add(player);
+        players.add(player1);
         players.add(npc1);
         players.add(npc2);
         players.add(npc3);

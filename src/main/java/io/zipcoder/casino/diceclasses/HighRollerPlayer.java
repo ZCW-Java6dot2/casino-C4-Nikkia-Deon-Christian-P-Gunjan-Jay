@@ -10,6 +10,7 @@ public class HighRollerPlayer implements HighRollEntrant {
 
     public HighRollerPlayer(Player player){
         this.player = player;
+        this.activeRoller = true;
 
     }
 
