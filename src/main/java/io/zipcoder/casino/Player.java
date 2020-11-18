@@ -8,7 +8,16 @@ public class Player {
     private ArrayList<Card> hand;
     private String name;
     private Card card;
-    //player number
+
+    public Integer getPlayerNumber() {
+        return playerNumber;
+    }
+
+    public void setPlayerNumber(Integer playerNumber) {
+        this.playerNumber = playerNumber;
+    }
+
+    private Integer playerNumber;
 
     public Player(){
         hand = new ArrayList<Card>();

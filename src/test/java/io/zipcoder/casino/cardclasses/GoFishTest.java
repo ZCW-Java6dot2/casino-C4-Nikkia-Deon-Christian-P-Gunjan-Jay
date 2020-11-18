@@ -31,4 +31,75 @@ GoFish gofish = new GoFish();
         Assert.assertEquals(player.getHand().size() ,1);
     }
 
+    @Test
+    public void addCardToPlayerTest(){
+        //Given
+        Player player = new Player();
+        player.setName("gunjan");
+        player.setBalance(4500D);
+        Card card1 = new Card("Spades","4");
+        Card card2 = new Card("Diamond","8");
+        //List<Card> cards = Arrays.asList(card1,card2);
+        ArrayList cards = new ArrayList<Card>();
+        cards.add(card1);
+        player.setHand(cards);
+        //When
+         gofish.addCardToHand(player,card2);
+        //Then
+        Assert.assertEquals(player.getHand().get(1).getValue() ,"8" );
+        Assert.assertEquals(player.getHand().size() ,2);
+    }
+
+    @Test
+    public void askForCardTestTrue(){
+        //Given
+        Player player1 = new Player();
+        player1.setName("gunjan");
+        player1.setBalance(4500D);
+        Card card1 = new Card("Spades","8");
+        ArrayList cardForPlayer1 = new ArrayList<Card>();
+        cardForPlayer1.add(card1);
+        player1.setHand(cardForPlayer1);
+
+        Player player2 = new Player();
+        player2.setName("Nikki");
+        player2.setBalance(7800D);
+        Card card2 = new Card("Diamond","2");
+        ArrayList cardForPlayer2 = new ArrayList<Card>();
+        cardForPlayer2.add(card2);
+        player2.setHand(cardForPlayer2);
+        //When
+        Boolean actualCard = gofish.askForCard(player1,player2,"2");
+        //Then
+        Assert.assertEquals(true,actualCard );
+
+    }
+
+    @Test
+    public void askForCardTestFalse(){
+        //Given
+        Player player1 = new Player();
+        player1.setName("gunjan");
+        player1.setBalance(4500D);
+        Card card1 = new Card("Spades","8");
+        ArrayList cardForPlayer1 = new ArrayList<Card>();
+        cardForPlayer1.add(card1);
+        player1.setHand(cardForPlayer1);
+
+        Player player2 = new Player();
+        player2.setName("Nikki");
+        player2.setBalance(7800D);
+        Card card2 = new Card("Diamond","2");
+        ArrayList cardForPlayer2 = new ArrayList<Card>();
+        cardForPlayer2.add(card2);
+        player2.setHand(cardForPlayer2);
+        //When
+        Boolean actualCard = gofish.askForCard(player1,player2,"9");
+        //Then
+        Assert.assertEquals(false,actualCard );
+
+    }
+
+
+
 }

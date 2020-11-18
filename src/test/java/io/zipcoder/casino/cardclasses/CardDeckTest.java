@@ -29,7 +29,7 @@ public class CardDeckTest {
     @Test
     public void testShuffleDeck(){
         //Given
-        Random random = new Random(50);
+        Random random = new Random(52);
         CardDeck cardDeck = new CardDeck();
         Stack<Card> expectedDeck = (Stack<Card>) (cardDeck.getDeck().clone());
         Collections.shuffle(expectedDeck, random);

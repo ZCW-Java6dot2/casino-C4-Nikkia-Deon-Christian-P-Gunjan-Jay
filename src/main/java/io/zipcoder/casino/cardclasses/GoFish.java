@@ -28,60 +28,44 @@ public class GoFish extends CardGame{
    {
        //List of methods
        super.initialCardsGiven(1);
-       this.initialHand();
+       this.displayInitialHand();
    }
 
-   public void initialHand(){
+   public void displayInitialHand(){
+       console.println("***************************************************************************************************************");
        for (int i = 0; i < players.size(); i++) {
-           System.out.println(super.getPlayers().get(i).getHand());
+           console.println("Hand for Player > %s is %s" , players.get(i).getName().toUpperCase() , super.getPlayers().get(i).getHand());
        }
+       console.println("***************************************************************************************************************");
 
        this.playerTurn();
     }
 
     public void playerTurn(){
-         String opponent = "";
+         Integer opponentNumber = 0;
          String opponentValue ="";
-       // String opponentSuite ="";
-        //display menu to select player
+
         for (int i = 0; i < players.size(); i++) {
-           opponent= console.getStringInput(players.get(i).getName().toUpperCase() + " Please enter the other player name: ");
-            Boolean flagPlayerfound=false;
-           for(int k=0;k<players.size();k++)
-           {
 
-               if(players.get(k).getName().equalsIgnoreCase(opponent))
-                   flagPlayerfound=true;
-                   else
-                   flagPlayerfound=false;
-           }
-           if(flagPlayerfound) {
+            console.println("Please select opponent player number from below :");
+            for(int x=0 ;x < players.size() ;x++)
+            {
+                console.println("Number %d for %s" , players.get(x).getPlayerNumber() ,players.get(x).getName().toUpperCase());
+            }
+            opponentNumber = console.getIntegerInput("Enter the number here :  ");
+
+
                opponentValue = console.getStringInput("Please enter the value of the card: ");
-               //add if to check if the opponent asked is same as player 1
-               for (int j = 0; j < players.size(); j++) {
-                   if (players.get(j).getName().equalsIgnoreCase(opponent)) {
-                       this.askForCard(players.get(i), players.get(j), opponentValue);
-                   }
 
-               }
-           }
-           else
-               System.out.println("Player not found , Please try again..");
+                       this.askForCard(players.get(i), players.get(opponentNumber-1), opponentValue);
+            }
 
-        }
-        // use arraylist of players
-        // askForCard
-        // after every turn check player hand for pack
-        // if pack found  remove those cards
-        // increment pack counter
     }
 
-    public void askForCard(Player dealerPlayer ,Player opponentPlayer,String opponentValue) {
+    public Boolean askForCard(Player dealerPlayer ,Player opponentPlayer,String opponentValue) {
       ArrayList<Card> opponentPlayerHand=opponentPlayer.getHand();
       Boolean cardFound=false;
-      //  System.out.println("Before"+ opponentPlayerHand);;
       Collections.sort(opponentPlayerHand);
-      //  System.out.println("After"+ opponentPlayerHand);;
 
         for (int i = 0; i < opponentPlayerHand.size(); i++) {
             if (opponentPlayerHand.get(i).getValue().equalsIgnoreCase(opponentValue)) {
@@ -90,16 +74,16 @@ public class GoFish extends CardGame{
                 //check if pack
                  addCardToHand(dealerPlayer ,opponentPlayerHand.get(i));
                  removeCardFromPlayer(opponentPlayerHand.get(i),opponentPlayer);
-
             }
         }
           if(!cardFound)
             {
-                    System.out.println("Go Fish...." + dealerPlayer.getName().toUpperCase());
-                    dealerPlayer.addCard(deck.getDeck().pop());
+                console.println("Go Fish....%s" , dealerPlayer.getName().toUpperCase());
+                console.println("***************************************************************************************************************");
+                dealerPlayer.addCard(deck.getDeck().pop());
             }
                checkPack(dealerPlayer);
-
+          return cardFound;
         }
 
     public void removeCardFromPlayer(Card card, Player opponentPlayer) {
@@ -107,31 +91,14 @@ public class GoFish extends CardGame{
     }
 
     public void addCardToHand(Player dealerPlayer, Card card) {
-
+        console.println("The card of %s of %s has been given to %s",card.getValue() ,card.getSuit(),dealerPlayer.getName().toUpperCase());
+        console.println("***************************************************************************************************************");
         dealerPlayer.addCard(card);
       //  return dealerPlayer;
 
     }
-    // player asks for specific card -DONE
-        // compare players hand to look for card -DONE
-        // if player doesnt have card draw from deck -DONE
-        // card  = drawCardFromDeck(Player 1)
-        // updateHand with card
-        //ELSE BELOW
-        // update hand player 1 and/or  2
 
-    //}
-//    private void updateHand(Player dealerPlayer, ArrayList<Card> checkCardinHand, int i) {
-//        System.out.println("The card of " + checkCardinHand.get(i).getValue() +" "+checkCardinHand.get(i).getSuit() + " has been given to " + dealerPlayer.getName().toUpperCase());
-//        //System.out.println("The card of " + checkCardinHand.get(i).getValue() +" "+checkCardinHand.get(i).getSuit() + " has been removed from);
-//      //  dealerPlayer.addCard(checkCardinHand.get(i));
-//       // checkCardinHand.remove(i);
-//    }
 
-    // public Card drawCardFromDeck(Player player) {
-   //     // POP a card from DECK and return it
-
-  //  }
 
 
     public Integer checkPack(Player dealerPlayer){
