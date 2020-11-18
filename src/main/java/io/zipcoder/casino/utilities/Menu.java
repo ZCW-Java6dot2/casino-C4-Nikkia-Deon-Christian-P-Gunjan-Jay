@@ -116,7 +116,7 @@ public class Menu {
     }
 
     public void callBlackJackOrGoFish(Integer cardGameChoice) {
-        System.out.println("Would call the blackJack or Go Fish");
+      //  System.out.println("Would call the blackJack or Go Fish");
         GoFish goFish=new GoFish(this.players);
         goFish.runGoFish();
     }
