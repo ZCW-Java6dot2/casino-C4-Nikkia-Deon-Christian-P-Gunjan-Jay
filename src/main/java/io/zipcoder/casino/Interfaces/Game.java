@@ -6,7 +6,7 @@ public interface Game {
 
     //void handleTurns();
 
-    void addPlayer();
+    void addPlayer(Player player);
 
-    void removePlayer();
+    void removePlayer(Player player);
 }
