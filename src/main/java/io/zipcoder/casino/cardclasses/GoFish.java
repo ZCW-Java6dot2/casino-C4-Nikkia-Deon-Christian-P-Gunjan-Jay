@@ -25,12 +25,13 @@ public class GoFish extends CardGame {
             this.packTracker.add(0);
         }
     }
-
+    // The first methods which will called from Menu
     public void runGoFish() {
         super.initialCardsGiven(1);
         this.displayInitialHand();
     }
 
+    //Display Initial hands given and go to next method playerTurn()
     public void displayInitialHand() {
         console.println("***************************************************************************************************************");
         for (int i = 0; i < players.size(); i++) {
@@ -41,16 +42,15 @@ public class GoFish extends CardGame {
 
         this.playerTurn();
     }
-
+ // Displays hands which are manipulated during the game.
     public void printHand() {
         console.println("***************************************************************************************************************");
         for (int i = 0; i < players.size(); i++) {
             console.println("\u001B[36mHand for Player > %s\u001B[0m is %s", players.get(i).getName().toUpperCase(), super.getPlayers().get(i).getHand());
         }
         console.println("***************************************************************************************************************");
-
-
     }
+
 
     public void playerTurn() {
         Integer opponentNumber = 0;
