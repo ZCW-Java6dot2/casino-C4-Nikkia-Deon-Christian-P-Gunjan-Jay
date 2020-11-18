@@ -2,7 +2,7 @@ package io.zipcoder.casino.cardclasses;
 import io.zipcoder.casino.Player;
 import io.zipcoder.casino.cardclasses.*;
 import io.zipcoder.casino.utilities.Console;
-
+import java.util.Collections;
 import java.util.ArrayList;
 
 public class GoFish extends CardGame{
@@ -12,7 +12,7 @@ public class GoFish extends CardGame{
 
     public GoFish() {
         super();
-      this.card=card;
+      //this.card=card;
        deck = new CardDeck();
     }
 
@@ -30,7 +30,6 @@ public class GoFish extends CardGame{
    public void initialHand(){
        for (int i = 0; i < players.size(); i++) {
            System.out.println(super.getPlayers().get(i).getHand());
-
        }
 
        this.playerTurn();
@@ -39,19 +38,20 @@ public class GoFish extends CardGame{
     public void playerTurn(){
          String opponent = "";
          String opponentValue ="";
-        String opponentSuite ="";
+       // String opponentSuite ="";
         for (int i = 0; i < players.size(); i++) {
-           opponent= console.getStringInput("Please enter the Player name: ");
+           opponent= console.getStringInput(players.get(i).getName().toUpperCase() + " Please enter the other player name: ");
            opponentValue= console.getStringInput("Please enter the value of the card: ");
-            opponentSuite= console.getStringInput("Please enter the suite of the card: ");
-           String opponentTotal = opponentSuite +" of " + opponentValue;
+          //  opponentSuite= console.getStringInput("Please enter the suite of the card: ");
+           //String opponentTotal = opponentSuite +" of " + opponentValue;
            //add if to check if the opponent asked is same as player 1
             for(int j= 0 ; j<players.size();j++)
             {
+               // if(players.get(i).getName().equalsIgnoreCase(opponent))
                 if(players.get(j).getName().equalsIgnoreCase(opponent))
                 {
 
-                    this.askForCard(players.get(j) ,opponentValue);
+                    this.askForCard(players.get(i),players.get(j) ,opponentValue);
                 }
             }
 
@@ -63,39 +63,47 @@ public class GoFish extends CardGame{
         // increment pack counter
     }
 
-    public Boolean askForCard(Player opponentPlayer,String opponentValue) {
+    public void askForCard(Player dealerPlayer ,Player opponentPlayer,String opponentValue) {
       ArrayList<Card> checkCardinHand=opponentPlayer.getHand();
+      Boolean cardFound=false;
+      Collections.sort(checkCardinHand);
         for (int i = 0; i < checkCardinHand.size(); i++) {
-          if(checkCardinHand.get(i).getValue().equalsIgnoreCase(opponentValue))
-           // if(opponentPlayer.getHand().contains(card))
-                return true;
-            else
-               return false;
+            if (checkCardinHand.get(i).getValue().equalsIgnoreCase(opponentValue)) {
+                cardFound=true;
+                updateHand(dealerPlayer, checkCardinHand, i);
+                //check if pack
 
+            }
+        }
+          if(!cardFound)
+            {
+                    System.out.println("Go Fish...." + dealerPlayer.getName().toUpperCase());
+                    dealerPlayer.addCard(deck.getDeck().pop());
+            }
+               checkPack();
 
         }
-      //  System.out.println(opponentPlayer.getHand().contains(card));
 
-        // player asks for specific card
-        // compare players hand to look for card
-        // if player doesnt have card draw from deck
+
+         // player asks for specific card -DONE
+        // compare players hand to look for card -DONE
+        // if player doesnt have card draw from deck -DONE
         // card  = drawCardFromDeck(Player 1)
         // updateHand with card
         //ELSE BELOW
         // update hand player 1 and/or  2
-        return false;
+
+    //}
+    private void updateHand(Player dealerPlayer, ArrayList<Card> checkCardinHand, int i) {
+        dealerPlayer.addCard(checkCardinHand.get(i));
+        checkCardinHand.remove(i);
     }
 
-   // public Card drawCardFromDeck(Player player) {
+    // public Card drawCardFromDeck(Player player) {
    //     // POP a card from DECK and return it
   //  re
   //  }
 
-
-    public void updateHand(){
-        // player.addCard and player.removeCard
-        // check
-    }
 
     public void checkPack(){
         // check for 4 cards of same
