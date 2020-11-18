@@ -20,16 +20,15 @@ public class HighRoller {
     private static Console console = new Console(System.in, System.out);
 
 
-    public HighRoller(HighRollerPlayer player, HighRollerNpc npc1, HighRollerNpc npc2, HighRollerNpc npc3) {
+    public HighRoller(Player player) {
+        Player player2 = new Player("James",500.0);
+        Player player3 = new Player("Joann",500.0);
+        Player player4 = new Player("John",500.0);
+        npc1 = new HighRollerNpc(player2);
+        npc2 = new HighRollerNpc(player3);
+        npc3 = new HighRollerNpc(player4);
         dice = new Die(6);
-        this.player = player;
-        this.npc1 = npc1;
-        this.npc2 = npc2;
-        this.npc2 = npc3;
-        players.add(player);
-        players.add(npc1);
-        players.add(npc2);
-        players.add(npc3);
+        this.player = new HighRollerPlayer(player);
     }
 
     public void runHighRoller(){
@@ -37,7 +36,7 @@ public class HighRoller {
     }
 
     public void gameStart(){
-        try {
+        //try {
             System.out.println("Welcome to High Roller");
             Double userInput = console.getDoubleInput("Place your bet");
             if (userInput <= 0) {
@@ -50,6 +49,7 @@ public class HighRoller {
             prizePool += npcBet(npc1);
             prizePool += npcBet(npc2);
             prizePool += npcBet(npc3);
+            prizePool += userInput + npcBet(npc1) + npcBet(npc2) + npcBet(npc3);
             System.out.println("Roll your dice");
             diceRollResults();
             checkForWinner();
@@ -61,10 +61,10 @@ public class HighRoller {
 //            System.out.println("Rolled " + npc2.getCurrentRoll());
 //            npc3.setCurrentRoll(diceRoll());
 //            System.out.println("Rolled " + npc3.getCurrentRoll());
-        } catch (Exception e){
+        //} catch (Exception e){
             System.out.println("Dealer throws out player");
             gameStart();
-        }
+       // }
 
     }
     public Double npcBet(HighRollerNpc npc){
@@ -78,7 +78,7 @@ public class HighRoller {
         return value;
     }
 
-    public Integer diceRollResults(){
+    public void diceRollResults(){
         if (player.getActiveRoller()) {
             player.setCurrentRoll(diceRoll());
             System.out.println(player.getPlayer().getName() + "Rolled " + player.getCurrentRoll());
@@ -96,7 +96,6 @@ public class HighRoller {
             System.out.println(npc3.getPlayer().getName() + "Rolled " + npc3.getCurrentRoll());
         }
 
-        return null;
     }
 
     public Boolean checkForWinner(){

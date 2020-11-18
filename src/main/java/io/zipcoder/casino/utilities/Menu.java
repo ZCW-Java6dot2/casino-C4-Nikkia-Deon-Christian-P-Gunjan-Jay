@@ -135,9 +135,10 @@ public class Menu {
     public void callCrapsOrHighRoller(Integer diceGameChoice) {
         switch(diceGameChoice){
             case 1: //craps
-//            case 2: HighRoller highRoller = new HighRoller(this.players);
-//                    highRoller.runHighRoller();
-//                    break;
+            case 2:
+                HighRoller highRoller = new HighRoller(this.singlePlayer);
+                    highRoller.runHighRoller();
+                    break;
             case 3:
                 this.selectCardOrDice();
                 break;

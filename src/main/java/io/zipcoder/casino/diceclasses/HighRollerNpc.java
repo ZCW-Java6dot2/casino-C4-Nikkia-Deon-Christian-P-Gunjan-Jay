@@ -5,22 +5,20 @@ import io.zipcoder.casino.Player;
 
 public class HighRollerNpc implements HighRollEntrant {
    private Player player;
-    private Double wallet;
     private Integer currentRoll;
     private Boolean activeRoller;
 
 
-    public HighRollerNpc(Player player,Double startingMoney) {
+    public HighRollerNpc(Player player) {
         this.player = player;
-        this.wallet = startingMoney;
     }
 
     public Double getWallet() {
-        return wallet;
+        return this.player.getBalance();
     }
 
     public void setWallet(Double wallet) {
-        this.wallet = wallet;
+        this.player.setBalance(wallet);
     }
 
     public Player getPlayer() {
@@ -35,8 +33,8 @@ public class HighRollerNpc implements HighRollEntrant {
         this.currentRoll = currentRoll;
     }
 
-    @Override
     public void setActiveRoller(Boolean yn) {
+        this.activeRoller = yn;
 
     }
 
