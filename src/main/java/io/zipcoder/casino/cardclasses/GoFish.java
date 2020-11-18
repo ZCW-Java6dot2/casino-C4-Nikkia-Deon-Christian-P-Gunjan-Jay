@@ -142,7 +142,6 @@ public class GoFish extends CardGame {
                 {
                     packInCard.add(dealerPlayer.getHand().get(j+1));
                 }
-
             }
         }
         // System.out.println(packInCard);
@@ -151,15 +150,12 @@ public class GoFish extends CardGame {
         return countDuplicates;
     }
 
-
-
     public void removePackFromHand(Integer countDuplicates , ArrayList<Card> packCards , Player dealerPlayer,Integer playerNumber){
 
          if(countDuplicates.equals(3)) {
                for (int i = 0; i < packCards.size(); i++) {
                 if (dealerPlayer.getHand().get(0).equals(packCards.get(i))) {
                     dealerPlayer.getHand().remove(packCards.get(i));
-
                 }
 
             }
@@ -177,8 +173,6 @@ public class GoFish extends CardGame {
         }
 
     }
-
-
     public void declareWinner(){
         //check for each player the pack count
 
