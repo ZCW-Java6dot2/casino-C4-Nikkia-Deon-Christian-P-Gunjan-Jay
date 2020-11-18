@@ -2,11 +2,11 @@ package io.zipcoder.casino.cardclasses;
 
 
 import io.zipcoder.casino.Player;
-
+import io.zipcoder.casino.Interfaces.Game;
 
 import java.util.ArrayList;
-
-public class CardGame {
+//implements Game
+public class CardGame implements Game{
    protected ArrayList<Player> players;
     CardDeck deck;
 
@@ -33,12 +33,11 @@ public class CardGame {
     private void goFishDecideByPlayers() {
         if (players.size() == 2) {
             for (Player p : players) {
-                System.out.println(p.getName());
                 for (int i = 0; i < 7; i++) {
                     p.addCard(deck.getDeck().pop());
 
                  }
-                deck.shuffleDeck();
+               deck.shuffleDeck();
               }
            }
         else {
@@ -46,7 +45,7 @@ public class CardGame {
                 for (int i = 0; i < 5; i++) {
                     p.addCard(deck.getDeck().pop());
                 }
-                 deck.shuffleDeck();
+               deck.shuffleDeck();
             }
         }
     }
@@ -60,4 +59,9 @@ public class CardGame {
     public void removePlayer(Player player) {
         players.remove(player);
     }
+
+
+
+
+
 }
