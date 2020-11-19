@@ -59,10 +59,12 @@ public class GoFish extends CardGame {
     public void playerTurn() {
         Integer opponentNumber = 0;
         String opponentValue = "";
-        for (int i = 0; i < players.size(); i++) {
 
+        for (int i = 0; i < players.size(); i++) {
+            checkPack(players.get(i));
             console.println("Please select opponent player number from below :");
             for (int x = 0; x < players.size(); x++) {
+                if(x !=i)
                 console.println("Number %d for %s", players.get(x).getPlayerNumber(), players.get(x).getName().toUpperCase());
             }
             opponentNumber = console.getIntegerInput("Enter the number here :  ");
@@ -75,6 +77,7 @@ public class GoFish extends CardGame {
             this.askForCard(players.get(i), players.get(opponentNumber - 1), opponentValue);
         }
 
+        // this shouldnt be here, should not be able to play go fish with 2 players
         if(players.size()!= 0)
         {
             playerTurn();
@@ -94,7 +97,7 @@ public class GoFish extends CardGame {
 
         popFromDeck(dealerPlayer, cardFound);
         printHand();
-        checkPack(dealerPlayer,dealerPlayer.getPlayerNumber());
+        checkPack(dealerPlayer);
         return cardFound;
     }
 
@@ -135,7 +138,7 @@ public class GoFish extends CardGame {
 
     }
 
-    public Integer checkPack(Player dealerPlayer,Integer playerNumber) {
+    public Integer checkPack(Player dealerPlayer) {
         Collections.sort(dealerPlayer.getHand());
         ArrayList<Card> packInCard = new ArrayList<Card>();
         Integer countDuplicates = 0;
@@ -150,12 +153,12 @@ public class GoFish extends CardGame {
             }
         }
         // System.out.println(packInCard);
-         removePackFromHand(countDuplicates,packInCard,dealerPlayer,playerNumber);
+         removePackFromHand(countDuplicates,packInCard,dealerPlayer);
 
         return countDuplicates;
     }
 
-    public void removePackFromHand(Integer countDuplicates , ArrayList<Card> packCards , Player dealerPlayer,Integer playerNumber){
+    public void removePackFromHand(Integer countDuplicates , ArrayList<Card> packCards , Player dealerPlayer){
 
          if(countDuplicates.equals(3)) {
                for (int i = 0; i < packCards.size(); i++) {
@@ -164,7 +167,7 @@ public class GoFish extends CardGame {
                 }
 
             }
-         incrementBin(playerNumber);
+         //incrementBin(playerNumber);
         }
         this.removePlayerOnEmptyHand(dealerPlayer);
 

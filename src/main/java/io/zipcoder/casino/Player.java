@@ -63,6 +63,8 @@ public class Player {
         return balance;
     }
 
+    // put tests here
+
     public ArrayList<Card> getHand() {
         return hand;
     }
@@ -81,7 +83,7 @@ public class Player {
         hand.remove(c);
     }
 
-    public Card getCard(Object card){
+    public Card getCard(Card card){
         return this.card;
     }
 

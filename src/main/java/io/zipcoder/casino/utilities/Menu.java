@@ -32,7 +32,7 @@ public class Menu {
 //             this.getPlayersCount();
 //         }
 //         else {
-             Integer playNumber =1;
+             Integer playNumber = 1;
              for (int i = 0; i < players; i++) {
                  String playerName = console.getStringInput("Please enter your name : ");
                  Double balance = console.getDoubleInput("Please enter the balance : ");
