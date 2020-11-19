@@ -9,7 +9,7 @@ public class Die {
 
     public Die(Integer numberOfSides){
         this.numberOfSides = numberOfSides;
-        this.random = random;
+        this.random = new Random();
     }
 
     public Integer getNumberOfSides(Integer numberOfSides) {
