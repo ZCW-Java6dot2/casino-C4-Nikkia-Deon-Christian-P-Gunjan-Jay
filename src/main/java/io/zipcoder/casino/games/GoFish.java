@@ -6,7 +6,6 @@ import io.zipcoder.casino.cardclasses.CardGame;
 import io.zipcoder.casino.utilities.Console;
 import java.util.Collections;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class GoFish extends CardGame {
 
@@ -68,13 +67,34 @@ public class GoFish extends CardGame {
             opponentValue = console.getStringInput("Please enter the value of the card: ");
             this.askForCard(players.get(i), players.get(opponentNumber - 1), opponentValue);
         }
-        if(players.size()!=1) // if there is less then 2 players , do not continue
+        if( !isDeckEmpty()) // if deck is empty , do not continue
         {
             playerTurn();
         }
-
+        else
+        {
+            declareWinner();
+        }
     }
-//Verify right player is selected
+
+    private void declareWinner() {
+           if (packTracker.size() > 0) {
+            double highest = packTracker.get(0);
+            int highestIndex = 0;
+
+            for (int s = 1; s < packTracker.size(); s++){
+                double curValue = packTracker.get(s);
+                if (curValue > highest) {
+                    highest = curValue;
+                    highestIndex = s;
+                }
+            }
+            console.println("The winner is %s", players.get(highestIndex).getName().toUpperCase());
+
+        }
+    }
+
+    //Verify right player is selected
     private void inValidEntryCheck(Integer opponentNumber) {
         if(opponentNumber > players.size())
         {
@@ -113,7 +133,7 @@ public class GoFish extends CardGame {
 
     //If card is not found , Pop one from deck and add it to the Players hand
     private void popFromDeck(Player dealerPlayer, Boolean cardFound) {
-        if (!cardFound) {
+        if (!cardFound && !isDeckEmpty()) {
             console.println("\u001B[36mGo Fish....%s", dealerPlayer.getName().toUpperCase());
             dealerPlayer.addCard(deck.getDeck().pop());
             String displayCard  = String.valueOf(dealerPlayer.getHand().get(dealerPlayer.getHand().size()-1));
@@ -142,7 +162,6 @@ public class GoFish extends CardGame {
     public Integer checkPack(Player dealerPlayer) {
         Collections.sort(dealerPlayer.getHand());
         ArrayList<Card> packInCard = new ArrayList<Card>();
-
         int countDuplicates = 0;
         for (int j = 0; j < dealerPlayer.getHand().size() - 1; j++) {
          if(countDuplicates == 3)
@@ -151,7 +170,6 @@ public class GoFish extends CardGame {
 
               if (dealerPlayer.getHand().get(j).getValue().equals(dealerPlayer.getHand().get(k).getValue())) {
                   countDuplicates++;
-
                   packInCard.add(dealerPlayer.getHand().get(k));
                   if (countDuplicates == 3) {
                       packInCard.add(dealerPlayer.getHand().get(j));
@@ -178,22 +196,27 @@ public class GoFish extends CardGame {
 
          incrementBin(dealerPlayer.getPlayerNumber()); //Everytime a pack is formed, increment the counter for that player
 
-        this.removePlayerOnEmptyHand(dealerPlayer); //Check if hand is empty , remove the player
+        this.giveMoreCards(dealerPlayer); //Check if hand is empty , remove the player
 
     }
 
-    public void removePlayerOnEmptyHand(Player player)
+    public void giveMoreCards(Player player)
     {
         if(player.getHand().size() == 0 )
         {
-            super.removePlayer(player);
+          //  super.removePlayer(player);
+            if(!isDeckEmpty())
+            {
+                for (int i = 0; i < 7; i++) {
+                    player.addCard(deck.getDeck().pop());
+                }
+                deck.shuffleDeck();
+            }
+
         }
 
     }
-    public void declareWinner(){
-        //check for each player the pack count
 
-    }
 
     public void incrementBin(Integer indexForCounter)
     {
