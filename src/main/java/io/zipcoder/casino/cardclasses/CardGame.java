@@ -50,7 +50,10 @@ public class CardGame implements Game{
         }
     }
 
-
+public Boolean isDeckEmpty()
+{
+   return  deck.getDeck().empty();
+}
 
     public void addPlayer(Player newPlayer) {
         players.add(newPlayer);
