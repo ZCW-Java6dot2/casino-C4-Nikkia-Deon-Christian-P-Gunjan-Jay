@@ -32,38 +32,27 @@ public class GoFish extends CardGame {
     }
     //Display Initial hands given from CardDeck and go to next method playerTurn()
     public void displayInitialHand() {
-        printHand();
-        this.playerTurn();
-    }
-  // Displays hands which are manipulated during the game.
-    public void printHand() {
-
-        for (int i = 0; i < players.size(); i++) {
+           for(int i = 0; i < players.size(); i++) {
             Collections.sort(super.getPlayers().get(i).getHand());
-             // displayHand(players.get(i));
+            // displayHand(players.get(i));
             String playerName=players.get(i).getName().toUpperCase();
             console.println("\u001B[36mHand for Player > %s\u001B[0m is %s",playerName, super.getPlayers().get(i).getHand());
         }
+        this.playerTurn();
     }
-// List the players by number and select opposite player and accept the value
-    public void playerTurn() {
-        Integer opponentNumber = 0;
-        String opponentValue = "";
-        for (int i = 0; i < players.size(); i++) {
+  // Displays hands which are manipulated during the game.
+    public void printHand(Player player) {
 
-            console.println("%s please select opponent player number from below :" ,players.get(i).getName().toUpperCase());
-            for (int x = 0; x < players.size(); x++) {
-            checkPack(players.get(i));//On Load,check if pack is done
-                if(x!=i) {
-                    String playerName=players.get(x).getName().toUpperCase();
-                    console.println("%d for %s", players.get(x).getPlayerNumber(),playerName );
-                }
-            }
-            opponentNumber = console.getIntegerInput("Enter the number here :  ");
-            inValidEntryCheck(opponentNumber);
-            opponentValue = console.getStringInput("Please enter the value of the card: ");
-            this.askForCard(players.get(i), players.get(opponentNumber - 1), opponentValue);
-        }
+       // for (int i = 0; i < players.size(); i++) {
+            Collections.sort(player.getHand());
+             // displayHand(players.get(i));
+            String playerName=player.getName().toUpperCase();
+            console.println("\u001B[36mHand for Player > %s\u001B[0m is %s",playerName, player.getHand());
+       // }
+    }
+// List the players number and declareWinner based on Deck Empty
+    public void playerTurn() {
+        displayPlayerNames();
         if( !isDeckEmpty()) // if deck is empty , do not continue
         {
             playerTurn();
@@ -73,23 +62,30 @@ public class GoFish extends CardGame {
             declareWinner();
         }
     }
-//declareWinner
-    private void declareWinner() {
-           if (packTracker.size() > 0) {
-            double highest = packTracker.get(0);
-            int highestIndex = 0;
+  // Displays the players number for selection and asks for Value
+    private void displayPlayerNames() {
+        Integer opponentNumber = 0;
+        String opponentValue = "";
+        for (int i = 0; i < players.size(); i++) {
 
-            for (int s = 1; s < packTracker.size(); s++){
-                double curValue = packTracker.get(s);
-                if (curValue > highest) {
-                    highest = curValue;
-                    highestIndex = s;
+            console.println("%s please select opponent player number from below :" ,players.get(i).getName().toUpperCase());
+            for (int x = 0; x < players.size(); x++) {
+            checkPack(players.get(i));//On Load,check if pack is done
+
+                if(x!=i) {
+                    String playerName=players.get(x).getName().toUpperCase();
+                    console.println("%d for %s", players.get(x).getPlayerNumber(),playerName );
                 }
             }
-            console.println("The winner is %s", players.get(highestIndex).getName().toUpperCase());
-
+            printHand(players.get(i));
+            opponentNumber = console.getIntegerInput("Enter the number here :  ");
+            inValidEntryCheck(opponentNumber);
+            opponentValue = console.getStringInput("Please enter the value of the card: ");
+            //add condition to check if the value is correct!!!
+            this.askForCard(players.get(i), players.get(opponentNumber - 1), opponentValue);
         }
     }
+
 //Verify right player is selected
     private void inValidEntryCheck(Integer opponentNumber) {
         if(opponentNumber > players.size())
@@ -112,7 +108,7 @@ public class GoFish extends CardGame {
         this.giveMoreCards(opponentPlayer);
         this.giveMoreCards(dealerPlayer);
         checkPack(dealerPlayer); //As soon we manipulate the cards, check if Pack has been formed
-        printHand();
+        //printHand();
         return cardFound;
     }
 
@@ -148,7 +144,7 @@ public class GoFish extends CardGame {
 //Add a card to hand given by opponent player
     public void addCardToHand(Player dealerPlayer, Card card) {
         String displayName=dealerPlayer.getName().toUpperCase();
-        console.println("The card of %s of %s has been given to %s", card.getValue(), card.getSuit(), displayName);
+        console.println("\u001B[36mThe card of %s of %s has been given to %s\u001B[0m ", card.getValue(), card.getSuit(), displayName);
         dealerPlayer.addCard(card);
      }
 
@@ -179,7 +175,6 @@ public class GoFish extends CardGame {
                       break;
               }
           }
-
         }
              return countDuplicates;
     }
@@ -188,11 +183,8 @@ public class GoFish extends CardGame {
                    for(int i=0; i<packCards.size();i++) {
                        dealerPlayer.getHand().remove(packCards.get(i));
                    }
-
          incrementBin(dealerPlayer.getPlayerNumber()); //Everytime a pack is formed, increment the counter for that player
-
         this.giveMoreCards(dealerPlayer); //Check if hand is empty , add more cards
-
     }
 //If the player does not have cards, give 5 more from deck
     public void giveMoreCards(Player player)
@@ -202,15 +194,10 @@ public class GoFish extends CardGame {
            if(!isDeckEmpty())
             {
                 for (int i = 0; i < 5; i++) {
-
                     this.popFromDeck(player,false);
-                    // player.addCard(super.deck.getDeck().pop());
                 }
-                //deck.shuffleDeck();
             }
         }
-
-       // removePlayer(player);
     }
     public void incrementBin(Integer indexForCounter)
     {
@@ -223,4 +210,24 @@ public class GoFish extends CardGame {
     {
         return packTracker.get(index);
     }
+
+    //declareWinner
+    private void declareWinner() {
+        if (packTracker.size() > 0) {
+            double highest = packTracker.get(0);
+            int highestIndex = 0;
+
+            for (int s = 1; s < packTracker.size(); s++){
+                double curValue = packTracker.get(s);
+                if (curValue > highest) {
+                    highest = curValue;
+                    highestIndex = s;
+                }
+            }
+            console.println("The winner is %s", players.get(highestIndex).getName().toUpperCase());
+
+        }
+    }
+
+
 }
