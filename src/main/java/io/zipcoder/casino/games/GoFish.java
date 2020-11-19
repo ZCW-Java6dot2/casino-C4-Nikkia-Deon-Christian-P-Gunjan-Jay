@@ -34,7 +34,6 @@ public class GoFish extends CardGame {
     public void displayInitialHand() {
            for(int i = 0; i < players.size(); i++) {
             Collections.sort(super.getPlayers().get(i).getHand());
-            // displayHand(players.get(i));
             String playerName=players.get(i).getName().toUpperCase();
             console.println("\u001B[36mHand for Player > %s\u001B[0m is %s",playerName, super.getPlayers().get(i).getHand());
         }
@@ -42,13 +41,9 @@ public class GoFish extends CardGame {
     }
   // Displays hands which are manipulated during the game.
     public void printHand(Player player) {
-
-       // for (int i = 0; i < players.size(); i++) {
             Collections.sort(player.getHand());
-             // displayHand(players.get(i));
             String playerName=player.getName().toUpperCase();
             console.println("\u001B[36mHand for Player > %s\u001B[0m is %s",playerName, player.getHand());
-       // }
     }
 // List the players number and declareWinner based on Deck Empty
     public void playerTurn() {
@@ -204,7 +199,6 @@ public class GoFish extends CardGame {
         Integer a=packTracker.get(indexForCounter);
         a++;
         packTracker.set(indexForCounter,a);
-
     }
     public Integer getBin(Integer index)
     {
@@ -225,9 +219,6 @@ public class GoFish extends CardGame {
                 }
             }
             console.println("The winner is %s", players.get(highestIndex).getName().toUpperCase());
-
         }
     }
-
-
 }
