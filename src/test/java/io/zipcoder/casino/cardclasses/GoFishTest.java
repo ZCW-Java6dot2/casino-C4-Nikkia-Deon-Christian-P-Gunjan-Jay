@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
+import io.zipcoder.casino.games.GoFish;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,5 +1,8 @@
-package io.zipcoder.casino.cardclasses;
+package io.zipcoder.casino.games;
 import io.zipcoder.casino.Player;
+import io.zipcoder.casino.cardclasses.Card;
+import io.zipcoder.casino.cardclasses.CardDeck;
+import io.zipcoder.casino.cardclasses.CardGame;
 import io.zipcoder.casino.utilities.Console;
 import java.util.Collections;
 import java.util.ArrayList;
@@ -9,7 +12,7 @@ public class GoFish extends CardGame {
 
     private Card card;
     private static Console console = new Console(System.in, System.out);
-    ArrayList<Integer> packTracker ;//= new ArrayList<Integer>(10);
+    ArrayList<Integer> packTracker ;
 
     public GoFish() {
         super();
@@ -24,16 +27,16 @@ public class GoFish extends CardGame {
             this.packTracker.add(0);
         }
     }
-    // The first methods which will called from Menu
+    // The first method will be  called from Menu
     public void runGoFish() {
         super.initialCardsGiven(1);
         this.displayInitialHand();
     }
 
-    //Display Initial hands given and go to next method playerTurn()
+    //Display Initial hands given from CardDeck and go to next method playerTurn()
     public void displayInitialHand() {
         printHand();
-       this.playerTurn();
+        this.playerTurn();
     }
   // Displays hands which are manipulated during the game.
     public void printHand() {
@@ -54,7 +57,7 @@ public class GoFish extends CardGame {
 
             console.println("Please select opponent player number from below :");
             for (int x = 0; x < players.size(); x++) {
-               // checkPack(players.get((i));
+            checkPack(players.get(i));//On Load,check if pack is done
                 if(x!=i) {
                     String playerName=players.get(x).getName().toUpperCase();
                     console.println("%d for %s", players.get(x).getPlayerNumber(),playerName );
@@ -65,13 +68,13 @@ public class GoFish extends CardGame {
             opponentValue = console.getStringInput("Please enter the value of the card: ");
             this.askForCard(players.get(i), players.get(opponentNumber - 1), opponentValue);
         }
-        if(players.size()!=1)
+        if(players.size()!=1) // if there is less then 2 players , do not continue
         {
             playerTurn();
         }
 
     }
-
+//Verify right player is selected
     private void inValidEntryCheck(Integer opponentNumber) {
         if(opponentNumber > players.size())
         {
@@ -80,7 +83,7 @@ public class GoFish extends CardGame {
         }
     }
 
-    //Player 1 will ask Player 2 a card of specific Value
+    //Player 1 will ask Player 2 a card of specific Value , it will be given by Player 2 OR Popped from deck
        public Boolean askForCard(Player dealerPlayer, Player opponentPlayer, String opponentValue) {
         ArrayList<Card> opponentPlayerHand = opponentPlayer.getHand();
         Boolean cardFound = false;
@@ -90,10 +93,9 @@ public class GoFish extends CardGame {
         if (cardFound) {
             removeCardFromPlayer(opponentPlayer, cardsToAddandRemove);
         }
-
         popFromDeck(dealerPlayer, cardFound);
+        checkPack(dealerPlayer); //As soon we manipulate the cards, check if Pack has been formed
         printHand();
-        checkPack(dealerPlayer);
         return cardFound;
     }
 
@@ -120,23 +122,27 @@ public class GoFish extends CardGame {
 
         }
     }
-
+//Remove the cards from players collected by extractCardsForRemoval()
     public void removeCardFromPlayer(Player opponentPlayer ,ArrayList<Card> cards)  {
         for(int i=0; i<cards.size();i++) {
             opponentPlayer.getHand().remove(cards.get(i));
         }
 
     }
-
+//Add a card to hand given by opponent player
     public void addCardToHand(Player dealerPlayer, Card card) {
         String displayName=dealerPlayer.getName().toUpperCase();
         console.println("The card of %s of %s has been given to %s", card.getValue(), card.getSuit(), displayName);
         dealerPlayer.addCard(card);
      }
 
+    //Check if the cards have pack of 4 cards with same value
+    //if present increment the counter and collect the cards in an ArrayList
+
     public Integer checkPack(Player dealerPlayer) {
         Collections.sort(dealerPlayer.getHand());
         ArrayList<Card> packInCard = new ArrayList<Card>();
+
         int countDuplicates = 0;
         for (int j = 0; j < dealerPlayer.getHand().size() - 1; j++) {
          if(countDuplicates == 3)
@@ -148,7 +154,7 @@ public class GoFish extends CardGame {
 
                   packInCard.add(dealerPlayer.getHand().get(k));
                   if (countDuplicates == 3) {
-                      packInCard.add(dealerPlayer.getHand().get(j + 1));
+                      packInCard.add(dealerPlayer.getHand().get(j));
                       removePackFromHand(packInCard,dealerPlayer);
                       packInCard.clear();
                       break;
@@ -162,24 +168,17 @@ public class GoFish extends CardGame {
           }
 
         }
-        // System.out.println(packInCard);
-
-        return countDuplicates;
+             return countDuplicates;
     }
-
+//Remove the pack cards collected in the checkPack() method
     public void removePackFromHand(ArrayList<Card> packCards , Player dealerPlayer){
-
-//               for (int i = 0; i < packCards.size(); i++) {
-//                if (dealerPlayer.getHand().get(i).equals(packCards.get(i))) {
-//                    dealerPlayer.getHand().remove(packCards.get(i));
-//                }
                    for(int i=0; i<packCards.size();i++) {
                        dealerPlayer.getHand().remove(packCards.get(i));
                    }
 
-       //  incrementBin(playerNumber);
+         incrementBin(dealerPlayer.getPlayerNumber()); //Everytime a pack is formed, increment the counter for that player
 
-        this.removePlayerOnEmptyHand(dealerPlayer);
+        this.removePlayerOnEmptyHand(dealerPlayer); //Check if hand is empty , remove the player
 
     }
 
