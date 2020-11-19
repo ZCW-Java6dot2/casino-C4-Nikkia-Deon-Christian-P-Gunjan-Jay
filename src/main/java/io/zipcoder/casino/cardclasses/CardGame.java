@@ -60,12 +60,5 @@ public Boolean isDeckEmpty()
         players.remove(player);
     }
 
-    public void displayHand(Player player){
-        StringBuilder output = new StringBuilder(player.getName() + "'s hand looks like: ");
-        for (Card card: player.getHand()) {
-            output.append(card.getValue()).append("of").append(card.getSuit());
-        }
-        System.out.println(output.toString());
-    }
 
 }
