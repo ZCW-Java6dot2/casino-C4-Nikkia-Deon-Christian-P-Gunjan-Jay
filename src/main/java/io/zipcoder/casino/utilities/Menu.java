@@ -1,7 +1,7 @@
 package io.zipcoder.casino.utilities;
 
 import io.zipcoder.casino.Player;
-import io.zipcoder.casino.cardclasses.GoFish;
+import io.zipcoder.casino.games.GoFish;
 
 import java.util.ArrayList;
 public class Menu {

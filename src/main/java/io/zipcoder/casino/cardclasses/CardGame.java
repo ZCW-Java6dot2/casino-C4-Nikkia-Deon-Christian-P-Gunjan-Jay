@@ -8,7 +8,7 @@ import java.util.ArrayList;
 //implements Game
 public class CardGame implements Game{
    protected ArrayList<Player> players;
-    CardDeck deck;
+    protected CardDeck deck;
 
     public CardGame(ArrayList<Player> players) {
         this.players = players;
