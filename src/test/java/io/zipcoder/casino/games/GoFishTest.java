@@ -24,10 +24,12 @@ public class GoFishTest {
         Card card3 = new Card("Hearts","4");
         Card card4 = new Card("Diamond","4");
         Card card5 = new Card("Diamond","Jack");
+
         Card card6 = new Card("Spades","10");
         Card card7 = new Card("Clubs","2");
         Card card8 = new Card("Hearts","2");
         Card card9 = new Card("Diamond","8");
+
         ArrayList cardForPlayer1 = new ArrayList<Card>();
         cardForPlayer1.add(card1);
         cardForPlayer1.add(card2);
@@ -36,9 +38,11 @@ public class GoFishTest {
         cardForPlayer1.add(card5);
         cardForPlayer1.add(card6);
         cardForPlayer1.add(card7);
+
         cardForPlayer1.add(card8);
         cardForPlayer1.add(card9);
         //cardForPlayer1.add(card5);
+
         Collections.sort(cardForPlayer1);
         player1.setHand(cardForPlayer1);
         player1.setPlayerNumber(1);
@@ -47,10 +51,12 @@ public class GoFishTest {
 
         GoFish gofish = new GoFish(players);
         //When
+
         Integer actual = gofish.checkPack(player1);
 
+
         //Then
-        Assert.assertEquals(Integer.valueOf("3"),actual );
+        Assert.assertEquals(actual, player1.getHand() );
 
     }
 
