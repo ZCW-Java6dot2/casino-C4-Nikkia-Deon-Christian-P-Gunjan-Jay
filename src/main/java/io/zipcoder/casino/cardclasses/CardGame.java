@@ -8,7 +8,7 @@ import java.util.ArrayList;
 //implements Game
 public class CardGame implements Game{
    protected ArrayList<Player> players;
-    CardDeck deck;
+    protected CardDeck deck;
 
     public CardGame(ArrayList<Player> players) {
         this.players = players;
@@ -50,7 +50,10 @@ public class CardGame implements Game{
         }
     }
 
-
+public Boolean isDeckEmpty()
+{
+   return  deck.getDeck().empty();
+}
 
     public void addPlayer(Player newPlayer) {
         players.add(newPlayer);
@@ -60,6 +63,13 @@ public class CardGame implements Game{
         players.remove(player);
     }
 
+    public void displayHand(Player player){
+        StringBuilder output = new StringBuilder(player.getName() + "'s hand looks like: ");
+        for (Card card: player.getHand()) {
+            output.append(card.getValue()).append("of").append(card.getSuit());
+        }
+        System.out.println(output.toString());
+    }
 
 
 

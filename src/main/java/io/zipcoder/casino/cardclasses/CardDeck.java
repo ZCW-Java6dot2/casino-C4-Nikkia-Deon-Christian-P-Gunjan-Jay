@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.Stack;
 
 public class CardDeck {
-    private Stack<Card> deck;
+    protected Stack<Card> deck;
 
     public CardDeck() {
 
