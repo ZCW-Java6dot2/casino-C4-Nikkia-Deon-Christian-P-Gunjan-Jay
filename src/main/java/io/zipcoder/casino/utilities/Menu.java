@@ -61,26 +61,27 @@ public class Menu {
         System.out.println("3.  Exit");
         System.out.println("****************************");
         Integer cardOrDice = console.getIntegerInput("Please select the game you want to play:  ");
-        if(cardOrDice==3)
-        {
-            System.out.print("Quiting the Casino App, Program Ending");
-            System.exit(0);
-        }
-        else
         this.displayCardOrDiceMenu(cardOrDice);
 
     }
 
     public void displayCardOrDiceMenu(Integer gameSelection)
     {
-        if(gameSelection.equals(1))
+        switch(gameSelection)
         {
-            this.displayCardMenu();
+            case 1 : this.displayCardMenu();
+                     break;
+            case 2 : this.displayDiceMenu();
+                     break;
+            case 3 :
+                System.out.print("Quiting the Casino App, Program Ending");
+                System.exit(0);
+            default :
+                console.println("Wrong choice, select again");
+                selectCardOrDice();
+
         }
-        else
-        {
-            this.displayDiceMenu();
-        }
+
     }
 
     public void displayCardMenu()
@@ -127,6 +128,9 @@ public class Menu {
             case 3 :
                 this.selectCardOrDice();
                 break;
+            default:
+                console.println("Wrong choice, select again");
+                 displayDiceMenu();
         }
 
     }
