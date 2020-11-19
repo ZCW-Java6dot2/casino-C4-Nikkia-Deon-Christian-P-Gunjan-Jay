@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class CrapsTests {
 
+    /*
     @Test
     public void confirmTransactionTest(){
         //Given
@@ -23,9 +24,7 @@ public class CrapsTests {
 
         //Then
         Assert.assertEquals(expected, actual);
-
-
-
-
     }
+
+     */
 }
