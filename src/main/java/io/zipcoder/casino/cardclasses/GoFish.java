@@ -40,6 +40,7 @@ public class GoFish extends CardGame {
 
         for (int i = 0; i < players.size(); i++) {
             Collections.sort(super.getPlayers().get(i).getHand());
+             // displayHand(players.get(i));
             String playerName=players.get(i).getName().toUpperCase();
             console.println("\u001B[36mHand for Player > %s\u001B[0m is %s",playerName, super.getPlayers().get(i).getHand());
         }
@@ -168,14 +169,16 @@ public class GoFish extends CardGame {
 
     public void removePackFromHand(ArrayList<Card> packCards , Player dealerPlayer){
 
-               for (int i = 0; i < packCards.size(); i++) {
-                if (dealerPlayer.getHand().get(0).equals(packCards.get(i))) {
-                    dealerPlayer.getHand().remove(packCards.get(i));
-                }
-
+//               for (int i = 0; i < packCards.size(); i++) {
+//                if (dealerPlayer.getHand().get(i).equals(packCards.get(i))) {
+//                    dealerPlayer.getHand().remove(packCards.get(i));
+//                }
+                   for(int i=0; i<packCards.size();i++) {
+                       dealerPlayer.getHand().remove(packCards.get(i));
+                   }
 
        //  incrementBin(playerNumber);
-        }
+
         this.removePlayerOnEmptyHand(dealerPlayer);
 
     }
