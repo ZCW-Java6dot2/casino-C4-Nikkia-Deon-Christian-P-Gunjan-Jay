@@ -83,7 +83,7 @@ public class Player {
         hand.remove(c);
     }
 
-    public Card getCard(Card card){
+    public Card getCard(){
         return this.card;
     }
 

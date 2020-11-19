@@ -25,9 +25,6 @@ public class GoFishTest {
         Card card4 = new Card("Diamond","4");
         Card card5 = new Card("Diamond","Jack");
 
-        Card card6 = new Card("Diamond","2");
-        Card card7 = new Card("Spades","2");
-
         Card card6 = new Card("Spades","10");
         Card card7 = new Card("Clubs","2");
         Card card8 = new Card("Hearts","2");
@@ -54,8 +51,6 @@ public class GoFishTest {
 
         GoFish gofish = new GoFish(players);
         //When
-
-        ArrayList<Card> actual = gofish.checkPack(player1);
 
         Integer actual = gofish.checkPack(player1);
 
