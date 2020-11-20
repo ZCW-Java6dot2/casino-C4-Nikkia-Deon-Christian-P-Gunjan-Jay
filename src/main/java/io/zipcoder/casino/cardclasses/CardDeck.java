@@ -39,10 +39,10 @@ public class CardDeck {
 
     public Card drawACard() {
         if (deck.peek() != null) {
-            deck.pop();
+            return deck.pop();
         } else {
             return null;
         }
-        return null;
+//        return null;
     }
 }

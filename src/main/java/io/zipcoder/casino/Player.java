@@ -5,7 +5,7 @@ import io.zipcoder.casino.cardclasses.Card;
 public class Player {
 
     private double balance;
-    private ArrayList<Card> hand;
+    private ArrayList<Card> hand = new ArrayList<>();
     private String name;
     private Card card;
 
