@@ -29,9 +29,9 @@ public class CardDeck {
 
 
     public void shuffleDeck() {
-        Random seed = new Random(1);
+        Random seed = new Random(52);
 
-        Integer seedGenerated = seed.nextInt(1);
+        Integer seedGenerated = seed.nextInt(52);
         Random random = new Random(seedGenerated);
         Collections.shuffle(deck, random);
 
