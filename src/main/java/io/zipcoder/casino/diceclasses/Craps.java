@@ -13,13 +13,15 @@ import java.util.Queue;
 
 
 //TO-DO LIST
-// - kick players out when they have no money
 // - is it bad to define in class body?
 // - what's up with console? Shouldn't I be creating the wrapper instead?
 // -don't allow betting zero
-// - don't allow the placeBet to be increased after the come Out
 // - add the rest of the bets
+// - minimumBets?
+// - unit testing!
 public class Craps extends DiceGame {
+
+    private CrapsDisplay display = new CrapsDisplay();
 
     private boolean inSession = true;
     private boolean comeOutRoll = true;
@@ -51,6 +53,7 @@ public class Craps extends DiceGame {
     }
 
     public void playCraps() {
+        display.initializeFrame();
         inSession = true;
         comeOutRoll = true;
         while (inSession) {
@@ -67,6 +70,7 @@ public class Craps extends DiceGame {
                     }
                     if (rollNumber == 2 || rollNumber == 3 || rollNumber == 12){
                         console.println("Shooter lost the comeout.");
+                        System.out.println("COMEOUTROLL IS " + Boolean.toString(comeOutRoll));
                         crapsTable.handleAllIndividualBets(comeOutRoll, rollNumber, pointNumber);
                         continue; // go to the top of the loop, we have the same shooter
                     }
@@ -80,6 +84,14 @@ public class Craps extends DiceGame {
                 }
             }
         }
+    }
+
+    private void updateDisplay(Player p){
+        String name = p.getName();
+        String passBet = crapsTable.passLineBet.getOrDefault(p, 0.0).toString();
+        String comeBet = crapsTable.comeBet.getOrDefault(p, 0.0).toString();
+        String place4Bet = crapsTable.place4.getOrDefault(p, 0.0).toString();
+        display.updateDisplay(name, passBet, comeBet, place4Bet);
     }
 
     private void rollingForPoint() {
@@ -127,6 +139,7 @@ public class Craps extends DiceGame {
         for (int j = 0; j < turnQueue.size(); j++) { // go in order and take everyone's bets
             // should I use playerWager here?
             Player currentPlayer = turnQueue.get(j);
+            updateDisplay(currentPlayer);
             console.println("%s: ", currentPlayer.getName());
             crapsTable.takeBet(currentPlayer, comeOutRoll, shooter); //
         }
