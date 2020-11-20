@@ -58,24 +58,24 @@ public class Craps extends DiceGame {
                     if (rollNumber == 7 || rollNumber == 11){
                         console.println("Shooter won the comeout!");
                         crapsTable.handleAllIndividualBets(comeOutRoll, rollNumber, pointNumber);
-                        continue; // go to top of the loop, we have the same shooter
-                    }
+                    } else
                     if (rollNumber == 2 || rollNumber == 3 || rollNumber == 12){
                         console.println("Shooter lost the comeout.");
                         System.out.println("COMEOUTROLL IS " + Boolean.toString(comeOutRoll));
                         crapsTable.handleAllIndividualBets(comeOutRoll, rollNumber, pointNumber);
-                        continue; // go to the top of the loop, we have the same shooter
-                    }
+                    }else{
                     //enter pointRoll loop
                     pointRollSetup();
                     while (pointRolling) {
-                        rollingForPoint(rollNumber, pointNumber, shooter);
+                        rollingForPoint(pointNumber, shooter);
                         crapsTable.handleAllIndividualBets(comeOutRoll, rollNumber, pointNumber); // do this whether we're continuing or getting a new shooter
-                    }
+                    }}
                     kickPlayers();
                     if (players.size() == 0){
                         inSession = false;
+                        //crapsOut = true;
                         console.println("There are no players remaining. Game over.");
+                        break;
                     }
                 }
             }
@@ -90,7 +90,7 @@ public class Craps extends DiceGame {
         display.updateDisplay(name, passBet, comeBet, place4Bet);
     }
 
-    public void rollingForPoint(int rollNumber, int pointNumber, Player shooter) {
+    public void rollingForPoint( int pointNumber, Player shooter) {
         // we go until the shooter rolls a 7 or the point
         console.println("Point number is now " + pointNumber);
         console.println(betAndRoll(shooter));
@@ -179,5 +179,13 @@ public class Craps extends DiceGame {
 
     public ArrayList<Player> getTurnQueue() {
         return turnQueue;
+    }
+
+    public Boolean getComeOutRoll() {
+        return comeOutRoll;
+    }
+
+    public Boolean getPointRolling() {
+        return pointRolling;
     }
 }

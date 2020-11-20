@@ -38,8 +38,30 @@ public class CrapsTests {
 
     }
 
+    @Test
     public void emptyTurnQueueTest(){
-        
+        //Given
+        ArrayList<Player> expectedTurns = new ArrayList<Player>();
+
+        //When
+        craps.fillTurnQueue(0);
+        craps.emptyTurnQueue();
+        ArrayList<Player> actualTurns = craps.getTurnQueue();
+
+        //Then
+        Assert.assertEquals(expectedTurns, actualTurns);
+    }
+
+    @Test
+    public void pointRollSetupTest(){
+        //Given
+        Boolean expectedComeOut = false;
+        Boolean expectedPointRolling = true;
+
+        //When
+        craps.pointRollSetup();
+        Boolean actualComeOut = craps.getComeOutRoll();
+        Boolean actualPointRolling = craps.getPointRolling();
     }
 
 }
