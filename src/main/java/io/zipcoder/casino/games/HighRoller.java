@@ -30,9 +30,9 @@ public class HighRoller {
 
 
     public HighRoller(Player player) {
-        Player jack = new Player("Dealer1", 500.0);
-        Player cody = new Player("Dealer2", 500.0);
-        Player willow = new Player("Dealer3", 500.0);
+        Player jack = new Player("Dealer1", 2000.0);
+        Player cody = new Player("Dealer2", 2000.0);
+        Player willow = new Player("Dealer3", 2000.0);
         npc1 = new HighRollerNpc(jack);
         npc2 = new HighRollerNpc(cody);
         npc3 = new HighRollerNpc(willow);
@@ -60,6 +60,9 @@ public class HighRoller {
         if (userInput <= 0) {
             System.out.println("Nah fam not today");
             gameStart();
+        }else if (userInput < 100){
+            System.out.println("Minimum bet is 100 dollars");
+            restartGame();
         } else if (userInput > player1.getPlayer().getBalance()) {
             System.out.println(player1.getPlayer().getName() + "Funny money ain't accepted here, dealer throws you out. \n" + "your balance is " + player1.getPlayer().getBalance());
             gameStart();
@@ -85,7 +88,7 @@ public class HighRoller {
     }
 
     public Double npcBet(HighRollerNpc npc) {
-        double x = Math.floor(Math.random() * ((npc.getWallet() - 10) + 1) + 10);
+        double x = Math.floor(Math.random() * ((npc.getWallet()/8 - 10) + 1) + 10);
         npc.setWallet(npc.getWallet() - x);
         return x;
     }
@@ -151,7 +154,7 @@ public class HighRoller {
         if (winners.size() > 1) {
             System.out.print("\n" + "We have a Tie between ");
             for (int j = 0; j < winners.size(); j++) {
-                System.out.print(winners.get(j).getPlayer().getName());
+                System.out.print(winners.get(j).getPlayer().getName() + "\n");
 
             }
             diceRollResults();
@@ -174,6 +177,10 @@ public class HighRoller {
     }
     public void restartGame(){
         Integer userInput = console.getIntegerInput("Would you like to play again? \n\n1: Yes \n2: No");
+        if (userInput <= 0 || userInput > 2){
+            System.out.println("Not an option");
+            restartGame();
+        }
         switch(userInput) {
             case 1:
                 player1.setActiveRoller(true);
