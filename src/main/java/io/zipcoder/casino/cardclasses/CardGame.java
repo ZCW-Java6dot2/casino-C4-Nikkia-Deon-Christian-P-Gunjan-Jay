@@ -26,11 +26,11 @@ public class CardGame implements Game{
     public void initialCardsGiven(int gameType) {
         switch (gameType) {
             case 1: //GoFish
+
                 if (players.size() == 2) {
                     for (Player p : players) {
                         for (int i = 0; i < 7; i++) {
                             p.addCard(deck.getDeck().pop());
-
                         }
                         deck.shuffleDeck();
                     }
@@ -47,7 +47,7 @@ public class CardGame implements Game{
         }
 
 
-public Boolean isDeckEmpty()
+    public Boolean isDeckEmpty()
 {
    return  deck.getDeck().empty();
 }
