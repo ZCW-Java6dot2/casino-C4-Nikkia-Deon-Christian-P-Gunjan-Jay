@@ -44,6 +44,7 @@ public class DiceGame implements Game, GamblingGameInterface {
     }
 
 
+
     public void addPlayer(Player player) {
         players.add(player);
 
@@ -58,4 +59,6 @@ public class DiceGame implements Game, GamblingGameInterface {
 
 
 
-}
+    }
+
+
