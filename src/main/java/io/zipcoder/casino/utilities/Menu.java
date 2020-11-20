@@ -122,6 +122,7 @@ public class Menu {
         switch(cardGameChoice)
         {
             case 1 : //blackJack method.
+                    break;
             case 2 :GoFish goFish=new GoFish(this.players);
                     goFish.runGoFish();
                     break;
