@@ -22,7 +22,7 @@ public class BlackJack extends CardGame implements GamblingGameInterface, Game {
     private CardDeck cardDeck = new CardDeck();
     private Card Card;
     private ArrayList<Player> playersAtTable;
-    private HashMap<Player, Double> playersBet;
+    private HashMap<Player, Double> playersBet = new HashMap<Player, Double>();
 
     public BlackJack(ArrayList<Player> players) {
 
@@ -36,28 +36,20 @@ public class BlackJack extends CardGame implements GamblingGameInterface, Game {
     }
 
     public void runGame(){
-        playersAtTable = getPlayers();
+        playersAtTable = players;
         takeAllBets();
         dealingTheCardsOut();
         askAllPlayersHitOrStand();
 
 
-    }
 
-
-
-    public void payout(Double amount, Player player) {
-        /* Players collect money
-
-
-         */
 
     }
 
     public void takeAllBets() {
         for (int i = 0; i < playersAtTable.size(); i++) {
-            Double currentBet = console.getDoubleInput("Welcome to the Table "+ playersAtTable.get(i).getName() + ", what's your bet", System.in);
-            this.playersBet.put(getPlayers().get(i), currentBet);
+            Double currentBet = console.getDoubleInput("Welcome to the BlackJack Table "+ playersAtTable.get(i).getName() + ", what's your bet", System.in);
+            this.playersBet.put(playersAtTable.get(i), currentBet);
         }
 
         /* Players places wagers
@@ -68,15 +60,17 @@ public class BlackJack extends CardGame implements GamblingGameInterface, Game {
 
          */
     }
+
     public void displayHand(Player player){
         StringBuilder output = new StringBuilder(player.getName() + "'s hand looks like: ");
         for (Card card: player.getHand()) {
-            output.append(card.getValue()).append("of").append(card.getSuit());
+            output.append(card.getValue()).append(" of ").append(card.getSuit());
 
 
         }
         System.out.println(output.toString());
     }
+
     public void dealingTheCardsOut(){
         dealer.addCard(cardDeck.drawACard());
         displayHand(dealer);
@@ -92,8 +86,6 @@ public class BlackJack extends CardGame implements GamblingGameInterface, Game {
             currentPlayer.addCard(cardDeck.drawACard());
             displayHand(currentPlayer);
         }
-
-
     }
 
     public void askPlayerHitOrStand(Player player) {
@@ -116,8 +108,13 @@ public class BlackJack extends CardGame implements GamblingGameInterface, Game {
             System.out.println("You hit BlackJack!");
             Double payout = playersBet.get(player).doubleValue() * 2 ;
             player.setBalance(player.getBalance() + payout);
-            playersBet.replace(player,0.);
+            playersBet.replace(player,0.0);
+
         } else if(stateOfTheHand(getHandValue(player)).equals(handState.BUST)){
+            System.out.println("You bust! :(");
+            Double payout = playersBet.get(player).doubleValue() / 2;
+            player.setBalance(player.getBalance() - payout);
+            playersBet.replace(player, 0.0);
 
         }
 
@@ -129,13 +126,12 @@ public class BlackJack extends CardGame implements GamblingGameInterface, Game {
         }
     }
 
-
     public Integer getCardValue(Card card){
         card.getValue();
         if (card.getValue().equals("Jack") || card.getValue().equals("Queen") || card.getValue().equals("King") || card.getValue().equals("Ace")){
             return 10;
         } else if (card.getValue().equals("Ace")){
-            return 1;
+            return 1; // Figure out how to add "Ace" as 11 as well
         } else {
             return Integer.valueOf(card.getValue());
         }
@@ -160,6 +156,13 @@ public class BlackJack extends CardGame implements GamblingGameInterface, Game {
     }
 
     public void addPlayer(Player player) {
+
+    }
+
+    // DON'T NEED TO USE BELOW
+
+    public void payout(Double amount, Player player) {
+        // Players collect money
 
     }
 
