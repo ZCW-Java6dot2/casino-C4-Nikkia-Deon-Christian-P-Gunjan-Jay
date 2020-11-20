@@ -7,8 +7,6 @@ import io.zipcoder.casino.utilities.HighRollerNpc;
 import io.zipcoder.casino.utilities.HighRollerPlayer;
 import io.zipcoder.casino.utilities.Console;
 import io.zipcoder.casino.utilities.Menu;
-
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 
@@ -57,7 +55,7 @@ public class HighRoller {
         } else {
         System.out.println("Welcome to High Roller can you beat the dealer? \n");
             System.out.println("Rules: The player gets one roll, the dealer gets three rolls, winner takes all." +
-                            "\nif there is a tie their will be a tie breaker between High Rollers.\n");
+                            "\nIf there is a tie, their will be a tie breaker between High Rollers.\n");
         Double userInput = console.getDoubleInput("your balance is " + player1.getPlayer().getBalance() + "\nPlace your bet \n");
         if (userInput <= 0) {
             System.out.println("Nah fam not today");
@@ -102,7 +100,6 @@ public class HighRoller {
         npc1.setCurrentRoll(0);
         npc2.setCurrentRoll(0);
         npc3.setCurrentRoll(0);
-
         if (player1.getActiveRoller()) {
             player1.setCurrentRoll(diceRoll());
             System.out.println("\n" + player1.getPlayer().getName() + " rolled " + player1.getCurrentRoll());
@@ -141,7 +138,6 @@ public class HighRoller {
             if (players.get(i).getCurrentRoll() == highRoll) {
                 players.get(i).setActiveRoller(true);
                 winners.add(players.get(i));
-//                System.out.println("Size is " + winners.size());
             } else {
                 players.get(i).setActiveRoller(false);
             }
@@ -165,16 +161,13 @@ public class HighRoller {
     }
 
     public void announceWinner(HighRollEntrant player) {
-
         System.out.println("\nWe have a winner! " + player.getPlayer().getName() + " Wins " + prizePool + "\n");
-//        System.out.println("\nYour new balance is " + player1.getPlayer().getBalance() + prizePool);
 
 
     }
 
     public void payOut(HighRollEntrant player) {
         player.getPlayer().setBalance(player.getPlayer().getBalance() + prizePool);
-//        System.out.println(player.getPlayer().getBalance());
         prizePool = 0.0;
         restartGame();
 
@@ -187,10 +180,9 @@ public class HighRoller {
                 npc1.setActiveRoller(true);
                 npc2.setActiveRoller(true);
                 npc3.setActiveRoller(true);
-
                 gameStart();
                 break;
-            case 2: menu.selectCardOrDice();
+            case 2: menu.returnToMenu(player1.getPlayer());
             break;
         }
 

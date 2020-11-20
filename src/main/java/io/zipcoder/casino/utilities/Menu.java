@@ -6,6 +6,8 @@ import io.zipcoder.casino.diceclasses.Craps;
 import io.zipcoder.casino.games.HighRoller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Menu {
     ArrayList <Player> players = new ArrayList<Player>();
     Player singlePlayer = new Player();
@@ -107,7 +109,7 @@ public class Menu {
     {
         System.out.println("****************************");
         System.out.println("1.  Craps ");
-        System.out.println("2.  High Roller 1Player");
+        System.out.println("2.  High Roller");
         System.out.println("3.  Go Back to previous Menu");
         System.out.println("****************************");
         Integer diceGameChoice = console.getIntegerInput("Please select the game you want to play:  ");
@@ -134,20 +136,40 @@ public class Menu {
     }
 
     public void callCrapsOrHighRoller(Integer diceGameChoice) {
-        switch(diceGameChoice){
-            case 1: Craps craps = new Craps(this.players);
+        switch (diceGameChoice) {
+            case 1:
+                Craps craps = new Craps(this.players);
                 craps.playCraps();
                 break;
             case 2:
-                HighRoller highRoller = new HighRoller(this.players.get(0));
+                if (players.size() > 1) {
+                    System.out.println("This is a one player game");
+                } else {
+                    HighRoller highRoller = new HighRoller(this.players.get(0));
                     highRoller.runHighRoller();
                     break;
+                }
             case 3:
                 this.selectCardOrDice();
                 break;
 
         }
-
     }
-
+    public void returnToMenu(Player player){
+        ArrayList<Player> temp = new ArrayList<>();
+        temp.add(player);
+        if(players.size() > 1){
+            for (int i = 1; i < players.size(); i++) {
+                temp.add(players.get(i));
+            }
+            players = temp;
+        }else{
+            players = temp;
+        }
+        selectCardOrDice();
+    }
+    public void returnToMenu(ArrayList<Player> returningPlayers){
+        players = returningPlayers;
+        selectCardOrDice();
+    }
 }
