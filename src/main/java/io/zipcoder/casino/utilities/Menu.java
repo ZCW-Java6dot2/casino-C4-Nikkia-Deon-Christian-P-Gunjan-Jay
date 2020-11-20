@@ -100,8 +100,14 @@ public class Menu {
         switch(cardGameChoice)
         {
             case 1 : //blackJack method.
-            case 2 :GoFish goFish=new GoFish(this.players);
-                goFish.runGoFish();
+            case 2 :
+                GoFish goFish=new GoFish(this.players);
+                if(players.size() > 2)
+                 goFish.runGoFish();
+                else {
+                    console.println("GoFish needs 2 players ,please select other game");
+                    selectCardOrDice();
+                }
                 break;
             case 3 :
                 this.selectCardOrDice();
