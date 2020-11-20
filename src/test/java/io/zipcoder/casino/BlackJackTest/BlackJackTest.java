@@ -128,4 +128,49 @@ public class BlackJackTest {
         //Then
         Assert.assertEquals(expectedState, actualValue);
     }
+
+    @Test
+    public void askPlayerToHitTest3() {
+        //Given
+        Player p1 = new Player("Christian", 0.0);
+        Player p2 = new Player("Deon", 0.0);
+        ArrayList<Player> expectedPlayers = new ArrayList<Player>();
+        expectedPlayers.add(p1);
+        expectedPlayers.add(p2);
+        BlackJack blackJack = new BlackJack(expectedPlayers);
+        Card card1 = new Card("Diamonds", "3");
+        Card card2 = new Card("Hearts", "Ace");
+        Card card3 = new Card("Hearts", "4");
+        Integer expectedValue = 18;
+        BlackJack.handState expectedState = BlackJack.handState.UNDER;
+
+        //When
+        BlackJack.handState actualValue = blackJack.stateOfTheHand(expectedValue);
+
+
+        //Then
+        Assert.assertEquals(expectedState, actualValue);
+    }
+    @Test
+    public void askPlayerToHitTestAce() {
+        //Given
+        Player p1 = new Player("Christian", 0.0);
+        Player p2 = new Player("Deon", 0.0);
+        ArrayList<Player> expectedPlayers = new ArrayList<Player>();
+        expectedPlayers.add(p1);
+        expectedPlayers.add(p2);
+        BlackJack blackJack = new BlackJack(expectedPlayers);
+        Card card1 = new Card("Clubs", "King");
+        Card card2 = new Card("Hearts", "Ace");
+
+        Integer expectedValue = 21;
+        BlackJack.handState expectedState = BlackJack.handState.BLACKJACK;
+
+        //When
+        BlackJack.handState actualValue = blackJack.stateOfTheHand(expectedValue);
+
+
+        //Then
+        Assert.assertEquals(expectedState, actualValue);
+    }
 }
