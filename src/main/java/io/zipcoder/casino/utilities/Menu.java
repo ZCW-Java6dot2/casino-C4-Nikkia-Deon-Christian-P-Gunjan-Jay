@@ -39,7 +39,12 @@ public class Menu {
                  this.storePlayers(playerName, balance,playNumber++);
              }
 
+//         }
+        //this.selectCardOrDice();
+
+
         this.selectCardOrDice();
+
 
 
     }
@@ -53,21 +58,34 @@ public class Menu {
         this.players.add(player);
     }
 
-    public void selectCardOrDice()
+    public void intiatiateWelcome(){
+        selectCardOrDice();
+        displayCardOrDiceMenu();
+    }
+
+    public String selectCardOrDice()
     {
-        System.out.println("****************************");
-        System.out.println("1.  Card Game");
-        System.out.println("2.  Dice Game");
-        System.out.println("3.  Exit");
-        System.out.println("****************************");
-        Integer cardOrDice = console.getIntegerInput("Please select the game you want to play:  ");
-        this.displayCardOrDiceMenu(cardOrDice);
+        String selectCD1 = "****************************\n";
+        String selectCD2 = "1.  Card Game\n";
+        String selectCD3 = "2.  Dice Game\n";
+        String selectCD4 = "3.  Exit\n";
+        String selectCD5 = "****************************";
+        String printToSelect = selectCD1 + selectCD2 + selectCD3 + selectCD4 + selectCD5;
+        System.out.println(printToSelect);
+
+
+
+        return printToSelect;
+
 
     }
 
-    public void displayCardOrDiceMenu(Integer gameSelection)
+    public void displayCardOrDiceMenu()
     {
-        switch(gameSelection)
+        Integer cardOrDice = console.getIntegerInput("Please select the game you want to play:  ");
+        //displayCardOrDiceMenu(cardOrDice);
+
+        switch(cardOrDice)
         {
             case 1 : this.displayCardMenu();
                      break;
@@ -78,7 +96,7 @@ public class Menu {
                 System.exit(0);
             default :
                 console.println("Wrong choice, select again");
-                selectCardOrDice();
+                displayCardOrDiceMenu();
 
         }
 
