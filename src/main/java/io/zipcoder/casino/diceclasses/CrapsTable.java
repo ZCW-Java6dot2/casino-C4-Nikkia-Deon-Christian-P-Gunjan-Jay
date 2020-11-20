@@ -409,7 +409,6 @@ if we're doing a point roll, what are the possible outcomes?
             case "place to lose 10": putter(placeToLose10, amount, p);
                 return true;
 
-
             case "don't bet": // don't do anything
                 return true;
 

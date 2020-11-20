@@ -16,7 +16,7 @@ import java.util.Queue;
 // - is it bad to define in class body?
 // - what's up with console? Shouldn't I be creating the wrapper instead?
 // -don't allow betting zero
-// - add the rest of the bets
+//
 // - minimumBets?
 // - unit testing!
 public class Craps extends DiceGame {
@@ -42,15 +42,7 @@ public class Craps extends DiceGame {
         super(2, players); // craps is traditionally played with 2 dice
     }
 
-    public static void main(String args[]) {
-        Player player1 = new Player("Marty", 50.00);
-        Player player2 = new Player("Christian", 30.00);
-        ArrayList<Player> testps = new ArrayList<Player>();
-        testps.add(player1);
-        testps.add(player2);
-        Craps craps = new Craps(testps);
-        craps.playCraps();
-    }
+
 
     public void playCraps() {
         display.initializeFrame();
@@ -61,8 +53,8 @@ public class Craps extends DiceGame {
                 // take turns among players, each one will be the shooter at some point
                 newShooterSetup(i);
                 while (crapsOut == false) {
-                    newRoundSetup(i);
-                    betAndRoll();
+                    console.println(newRoundSetup(i));
+                    console.println(betAndRoll(shooter));
                     if (rollNumber == 7 || rollNumber == 11){
                         console.println("Shooter won the comeout!");
                         crapsTable.handleAllIndividualBets(comeOutRoll, rollNumber, pointNumber);
@@ -77,16 +69,20 @@ public class Craps extends DiceGame {
                     //enter pointRoll loop
                     pointRollSetup();
                     while (pointRolling) {
-                        rollingForPoint();
+                        rollingForPoint(rollNumber, pointNumber, shooter);
                         crapsTable.handleAllIndividualBets(comeOutRoll, rollNumber, pointNumber); // do this whether we're continuing or getting a new shooter
                     }
                     kickPlayers();
+                    if (players.size() == 0){
+                        inSession = false;
+                        console.println("There are no players remaining. Game over.");
+                    }
                 }
             }
         }
     }
 
-    private void updateDisplay(Player p){
+    public void updateDisplay(Player p){
         String name = p.getName();
         String passBet = crapsTable.passLineBet.getOrDefault(p, 0.0).toString();
         String comeBet = crapsTable.comeBet.getOrDefault(p, 0.0).toString();
@@ -94,10 +90,10 @@ public class Craps extends DiceGame {
         display.updateDisplay(name, passBet, comeBet, place4Bet);
     }
 
-    private void rollingForPoint() {
+    public void rollingForPoint(int rollNumber, int pointNumber, Player shooter) {
         // we go until the shooter rolls a 7 or the point
         console.println("Point number is now " + pointNumber);
-        betAndRoll();
+        console.println(betAndRoll(shooter));
         if (rollNumber == pointNumber) {
             console.println("Shooter hit the point number!");  //loop back, same shooter
             pointRolling = false;
@@ -109,25 +105,25 @@ public class Craps extends DiceGame {
         }
     }
 
-    private void betAndRoll() {
+    public String betAndRoll(Player shooter) {
         playersBet();
         rollNumber = roll();
-        console.println(shooter.getName() + " rolled a " + rollNumber);
+        return (shooter.getName() + " rolled a " + rollNumber);
     }
 
-    private void pointRollSetup() {
+    public void pointRollSetup() {
         pointNumber = rollNumber;
         comeOutRoll = false;
         pointRolling = true;
     }
 
-    private void newRoundSetup(int i) {
+    public String newRoundSetup(int i) {
         comeOutRoll = true;
-        console.println("Player " + players.get(i).getName() + ": you are the shooter.");
         fillTurnQueue(i); // make sure the current shooter is first, followed by the rest
+        return ("Player " + players.get(i).getName() + ": you are the shooter.");
     }
 
-    private void newShooterSetup(int i) {
+    public void newShooterSetup(int i) {
         rollNumber = 0;
         pointNumber = 0;
         crapsOut = false;
@@ -135,7 +131,7 @@ public class Craps extends DiceGame {
         emptyTurnQueue();
     }
 
-    private void playersBet() {
+    public void playersBet() {
         for (int j = 0; j < turnQueue.size(); j++) { // go in order and take everyone's bets
             // should I use playerWager here?
             Player currentPlayer = turnQueue.get(j);
@@ -181,5 +177,7 @@ public class Craps extends DiceGame {
         return sum;
     }
 
+    public ArrayList<Player> getTurnQueue() {
+        return turnQueue;
+    }
 }
-
