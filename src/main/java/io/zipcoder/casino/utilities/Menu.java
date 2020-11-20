@@ -45,7 +45,7 @@ public class Menu {
              }
 
 //         }
-        //this.selectCardOrDice();
+
 
 
         this.selectCardOrDice();
@@ -146,6 +146,7 @@ public class Menu {
         {
             case 1 : BlackJack blackJack = new BlackJack(this.players);
                     blackJack.runGame();
+
                     break;
             case 2 :GoFish goFish=new GoFish(this.players);
                     goFish.runGoFish();
