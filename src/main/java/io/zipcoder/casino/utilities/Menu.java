@@ -2,7 +2,7 @@ package io.zipcoder.casino.utilities;
 
 import io.zipcoder.casino.Player;
 import io.zipcoder.casino.cardclasses.GoFish;
-import io.zipcoder.casino.diceclasses.HighRoller;
+import io.zipcoder.casino.games.HighRoller;
 
 import java.util.ArrayList;
 public class Menu {
@@ -144,8 +144,6 @@ public class Menu {
                 break;
 
         }
-
-        System.out.println("Would call the CrapsORHighRoller");
 
     }
 

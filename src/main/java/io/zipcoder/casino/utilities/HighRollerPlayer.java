@@ -1,29 +1,21 @@
-package io.zipcoder.casino.diceclasses;
+package io.zipcoder.casino.utilities;
 
 import io.zipcoder.casino.Interfaces.HighRollEntrant;
 import io.zipcoder.casino.Player;
 
-public class HighRollerNpc implements HighRollEntrant {
-   private Player player;
+public class HighRollerPlayer implements HighRollEntrant {
     private Integer currentRoll;
+    private Player player;
     private Boolean activeRoller;
 
-
-    public HighRollerNpc(Player player) {
+    public HighRollerPlayer(Player player){
         this.player = player;
         this.activeRoller = true;
-    }
 
-    public Double getWallet() {
-        return this.player.getBalance();
-    }
-
-    public void setWallet(Double wallet) {
-        this.player.setBalance(wallet);
     }
 
     public Player getPlayer() {
-        return this.player;
+        return player;
     }
 
     public Integer getCurrentRoll() {
@@ -34,13 +26,13 @@ public class HighRollerNpc implements HighRollEntrant {
         this.currentRoll = currentRoll;
     }
 
+    @Override
     public void setActiveRoller(Boolean yn) {
-        this.activeRoller = yn;
 
     }
 
     @Override
     public Boolean getActiveRoller() {
-        return null;
+        return activeRoller;
     }
 }
