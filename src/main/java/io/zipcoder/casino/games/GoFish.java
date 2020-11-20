@@ -36,6 +36,7 @@ public class GoFish extends CardGame {
             Collections.sort(super.getPlayers().get(i).getHand());
             String playerName=players.get(i).getName().toUpperCase();
             console.println("\u001B[36mHand for Player > %s\u001B[0m is %s",playerName, super.getPlayers().get(i).getHand());
+               console.println("************************************************************************************");
         }
         this.playerTurn();
     }
@@ -73,7 +74,7 @@ public class GoFish extends CardGame {
                 }
             }
             printHand(players.get(i));
-            opponentNumber = console.getIntegerInput("Enter the number here :  ");
+            opponentNumber = console.getIntegerInput("Enter the player number here :  ");
             inValidEntryCheck(opponentNumber);
             opponentValue = console.getStringInput("Please enter the value of the card: ");
             //add condition to check if the value is correct!!!
@@ -211,14 +212,15 @@ public class GoFish extends CardGame {
             double highest = packTracker.get(0);
             int highestIndex = 0;
 
-            for (int s = 1; s < packTracker.size(); s++){
+            for (int s = 0; s < packTracker.size(); s++){
                 double curValue = packTracker.get(s);
                 if (curValue > highest) {
                     highest = curValue;
                     highestIndex = s;
                 }
+
             }
-            console.println("The winner is %s", players.get(highestIndex).getName().toUpperCase());
+            console.println("The WINNER is %s ", players.get(highestIndex-1).getName().toUpperCase());
         }
     }
 }
