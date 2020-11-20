@@ -3,6 +3,7 @@ package io.zipcoder.casino.utilities;
 import io.zipcoder.casino.Player;
 import io.zipcoder.casino.cardclasses.GoFish;
 import io.zipcoder.casino.diceclasses.Craps;
+import io.zipcoder.casino.games.BlackJack;
 import io.zipcoder.casino.games.HighRoller;
 
 import java.util.ArrayList;
@@ -119,10 +120,12 @@ public class Menu {
     public void callBlackJackOrGoFish(Integer cardGameChoice) {
         switch(cardGameChoice)
         {
-            case 1 : //blackJack method.
+            case 1 : BlackJack blackJack = new BlackJack(this.players);
+            blackJack.runGame();
+            break;
             case 2 :
                 GoFish goFish=new GoFish(this.players);
-                if(players.size() > 2)
+                if(players.size() >= 2)
                  goFish.runGoFish();
                 else {
                     console.println("GoFish needs 2 players ,please select other game");

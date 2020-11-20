@@ -45,7 +45,6 @@ public class Craps extends DiceGame {
 
 
     public void playCraps() {
-        display.initializeFrame();
         inSession = true;
         comeOutRoll = true;
         while (inSession) {
@@ -135,7 +134,6 @@ public class Craps extends DiceGame {
         for (int j = 0; j < turnQueue.size(); j++) { // go in order and take everyone's bets
             // should I use playerWager here?
             Player currentPlayer = turnQueue.get(j);
-            updateDisplay(currentPlayer);
             console.println("%s: ", currentPlayer.getName());
             crapsTable.takeBet(currentPlayer, comeOutRoll, shooter); //
         }
