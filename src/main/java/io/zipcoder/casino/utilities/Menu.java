@@ -30,19 +30,14 @@ public class Menu {
         System.out.println("******* \u001B[36m Welcome to our Casino  \u001B[0m ******* \u001B[36m ");
         System.out.println("\u001B[0m****************************************");
          Integer players= console.getIntegerInput("Please enter the number of Players :");
-//         if(players<2)
-//         {
-//             System.out.println("<<<<< Please add at least 2 Players to play >>>>>>>");
-//             this.getPlayersCount();
-//         }
-//         else {
+
              Integer playNumber =1;
              for (int i = 0; i < players; i++) {
                  String playerName = console.getStringInput("Please enter your name : ");
                  Double balance = console.getDoubleInput("Please enter the balance : ");
                  this.storePlayers(playerName, balance,playNumber++);
              }
-//         }
+
         this.selectCardOrDice();
 
 
@@ -125,9 +120,16 @@ public class Menu {
         switch(cardGameChoice)
         {
             case 1 : //blackJack method.
-            case 2 :GoFish goFish=new GoFish(this.players);
-                    goFish.runGoFish();
-                    break;
+            case 2 :
+                GoFish goFish=new GoFish(this.players);
+                if(players.size() > 2)
+                 goFish.runGoFish();
+                else {
+                    console.println("GoFish needs 2 players ,please select other game");
+                    selectCardOrDice();
+                }
+                break;
+
             case 3 :
                 this.selectCardOrDice();
                 break;
