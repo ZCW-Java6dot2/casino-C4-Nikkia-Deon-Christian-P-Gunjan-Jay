@@ -26,13 +26,15 @@ public class Menu {
         System.out.println("******* \u001B[36m Welcome to our Casino  \u001B[0m ******* \u001B[36m ");
         System.out.println("\u001B[0m****************************************");
          Integer players= console.getIntegerInput("Please enter the number of Players :");
+
              Integer playNumber =1;
+
              for (int i = 0; i < players; i++) {
                  String playerName = console.getStringInput("Please enter your name : ");
                  Double balance = console.getDoubleInput("Please enter the balance : ");
                  this.storePlayers(playerName, balance,playNumber++);
              }
-//         }
+
         this.selectCardOrDice();
 
 
