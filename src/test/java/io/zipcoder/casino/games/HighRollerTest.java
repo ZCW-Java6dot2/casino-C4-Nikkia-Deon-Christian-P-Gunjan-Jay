@@ -4,6 +4,13 @@ import junit.framework.TestCase;
 
 public class HighRollerTest extends TestCase {
 
+
+    public void testRunHighRoller() {
+    }
+
+    public void testGameStart() {
+    }
+
     public void testNpcBet() {
     }
 
@@ -16,9 +23,12 @@ public class HighRollerTest extends TestCase {
     public void testCheckForWinner() {
     }
 
-    public void testAnnouceWinner() {
+    public void testAnnounceWinner() {
     }
 
     public void testPayOut() {
+    }
+
+    public void testRestartGame() {
     }
 }

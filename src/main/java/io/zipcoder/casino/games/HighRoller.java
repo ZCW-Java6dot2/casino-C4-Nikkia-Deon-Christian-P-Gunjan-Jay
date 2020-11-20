@@ -32,9 +32,9 @@ public class HighRoller {
 
 
     public HighRoller(Player player) {
-        Player jack = new Player("Dealers", 500.0);
-        Player cody = new Player("Dealers", 500.0);
-        Player willow = new Player("Dealers", 500.0);
+        Player jack = new Player("Dealer1", 500.0);
+        Player cody = new Player("Dealer2", 500.0);
+        Player willow = new Player("Dealer3", 500.0);
         npc1 = new HighRollerNpc(jack);
         npc2 = new HighRollerNpc(cody);
         npc3 = new HighRollerNpc(willow);
@@ -52,10 +52,12 @@ public class HighRoller {
 
     public void gameStart() {
         if (player1.getPlayer().getBalance() <= 0) {
-            System.out.println("You to broke to play this game");
-            menu.displayCardOrDiceMenu(0);
+            System.out.println("Come back when you have more money. Don't let the door hit you on the way out ");
+            menu.selectCardOrDice();
         } else {
-        System.out.println("Welcome to High Roller");
+        System.out.println("Welcome to High Roller can you beat the dealer? \n");
+            System.out.println("Rules: The player gets one roll, the dealer gets three rolls, winner takes all." +
+                            "\nif there is a tie their will be a tie breaker between High Rollers.\n");
         Double userInput = console.getDoubleInput("your balance is " + player1.getPlayer().getBalance() + "\nPlace your bet \n");
         if (userInput <= 0) {
             System.out.println("Nah fam not today");
@@ -66,17 +68,17 @@ public class HighRoller {
         } else {
             player1.getPlayer().setBalance(player1.getPlayer().getBalance() - userInput);
             prizePool += userInput;
-            System.out.println("Npcs place your bet \n");
+            System.out.println("Dealers place your bet \n");
             Double bet2 = npcBet(npc1);
             prizePool += bet2;
             Double bet3 = npcBet(npc2);
             prizePool += bet3;
             Double bet4 = npcBet(npc3);
             prizePool += bet4;
-            System.out.println(player1.getPlayer().getName() + userInput + "\n" +
-                    "The dealers fist bet is " + bet2 + "\n" +
-                    "The dealers second bet is " + bet3 + "\n" +
-                    "The dealers third bet" + bet4);
+            System.out.println(player1.getPlayer().getName() +" bet "+ userInput + "\n" +
+                    "The dealer1 bet " + bet2 + "\n" +
+                    "The dealer2 bet " + bet3 + "\n" +
+                    "The dealer3 bet " + bet4);
             System.out.println("\nRoll your dice \n");
             diceRollResults();
         }
@@ -85,7 +87,7 @@ public class HighRoller {
     }
 
     public Double npcBet(HighRollerNpc npc) {
-        double x = Math.floor(Math.random() * ((500 - 10) + 1) + 10);
+        double x = Math.floor(Math.random() * ((npc.getWallet() - 10) + 1) + 10);
         npc.setWallet(npc.getWallet() - x);
         return x;
     }
@@ -148,6 +150,7 @@ public class HighRoller {
             winningPlayer = winners.get(0);
             announceWinner(winningPlayer);
             payOut(winningPlayer);
+
         }
         if (winners.size() > 1) {
             System.out.print("\n" + "We have a Tie between ");
@@ -165,25 +168,35 @@ public class HighRoller {
 
         System.out.println("\nWe have a winner! " + player.getPlayer().getName() + " Wins " + prizePool + "\n");
 //        System.out.println("\nYour new balance is " + player1.getPlayer().getBalance() + prizePool);
-        restartGame();
+
 
     }
 
     public void payOut(HighRollEntrant player) {
         player.getPlayer().setBalance(player.getPlayer().getBalance() + prizePool);
-        System.out.println();
+//        System.out.println(player.getPlayer().getBalance());
         prizePool = 0.0;
+        restartGame();
 
     }
     public void restartGame(){
-        player1.setActiveRoller(true);
-        npc1.setActiveRoller(true);
-        npc2.setActiveRoller(true);
-        npc3.setActiveRoller(true);
+        Integer userInput = console.getIntegerInput("Would you like to play again? \n\n1: Yes \n2: No");
+        switch(userInput) {
+            case 1:
+                player1.setActiveRoller(true);
+                npc1.setActiveRoller(true);
+                npc2.setActiveRoller(true);
+                npc3.setActiveRoller(true);
 
-        gameStart();
+                gameStart();
+                break;
+            case 2: menu.selectCardOrDice();
+            break;
+        }
+
 
     }
+
 
 
 }

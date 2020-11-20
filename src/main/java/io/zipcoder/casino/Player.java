@@ -5,7 +5,7 @@ import io.zipcoder.casino.cardclasses.Card;
 public class Player {
 
     private double balance;
-    private ArrayList<Card> hand;
+    private ArrayList<Card> hand = new ArrayList<>();
     private String name;
     private Card card;
 
@@ -63,6 +63,8 @@ public class Player {
         return balance;
     }
 
+    // put tests here
+
     public ArrayList<Card> getHand() {
         return hand;
     }
@@ -81,7 +83,7 @@ public class Player {
         hand.remove(c);
     }
 
-    public Card getCard(Object card){
+    public Card getCard(){
         return this.card;
     }
 

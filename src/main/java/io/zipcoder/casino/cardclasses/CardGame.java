@@ -8,7 +8,7 @@ import java.util.ArrayList;
 //implements Game
 public class CardGame implements Game{
    protected ArrayList<Player> players;
-    CardDeck deck;
+    protected CardDeck deck;
 
     public CardGame(ArrayList<Player> players) {
         this.players = players;
@@ -26,31 +26,31 @@ public class CardGame implements Game{
     public void initialCardsGiven(int gameType) {
         switch (gameType) {
             case 1: //GoFish
-                goFishDecideByPlayers();
-        }
-        }
 
-    private void goFishDecideByPlayers() {
-        if (players.size() == 2) {
-            for (Player p : players) {
-                for (int i = 0; i < 7; i++) {
-                    p.addCard(deck.getDeck().pop());
-
-                 }
-               deck.shuffleDeck();
-              }
-           }
-        else {
-             for (Player p : players) {
-                for (int i = 0; i < 5; i++) {
-                    p.addCard(deck.getDeck().pop());
+                if (players.size() == 2) {
+                    for (Player p : players) {
+                        for (int i = 0; i < 7; i++) {
+                            p.addCard(deck.getDeck().pop());
+                        }
+                        deck.shuffleDeck();
+                    }
                 }
-               deck.shuffleDeck();
-            }
+                else {
+                    for (Player p : players) {
+                        for (int i = 0; i < 5; i++) {
+                            p.addCard(deck.getDeck().pop());
+                        }
+                        deck.shuffleDeck();
+                    }
+                }
+             }
         }
-    }
 
 
+    public Boolean isDeckEmpty()
+{
+   return  deck.getDeck().empty();
+}
 
     public void addPlayer(Player newPlayer) {
         players.add(newPlayer);
@@ -59,9 +59,6 @@ public class CardGame implements Game{
     public void removePlayer(Player player) {
         players.remove(player);
     }
-
-
-
 
 
 }

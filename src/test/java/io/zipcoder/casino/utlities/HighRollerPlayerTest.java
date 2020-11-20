@@ -1,6 +1,7 @@
-package io.zipcoder.casino.utilities;
+package io.zipcoder.casino.utlities;
 
 import io.zipcoder.casino.Player;
+import io.zipcoder.casino.utilities.HighRollerPlayer;
 import junit.framework.TestCase;
 
 public class HighRollerPlayerTest extends TestCase {

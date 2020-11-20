@@ -2,6 +2,7 @@ package io.zipcoder.casino.utilities;
 
 import io.zipcoder.casino.Player;
 import io.zipcoder.casino.cardclasses.GoFish;
+import io.zipcoder.casino.diceclasses.Craps;
 import io.zipcoder.casino.games.HighRoller;
 
 import java.util.ArrayList;
@@ -134,7 +135,9 @@ public class Menu {
 
     public void callCrapsOrHighRoller(Integer diceGameChoice) {
         switch(diceGameChoice){
-            case 1: //craps
+            case 1: Craps craps = new Craps(this.players);
+                craps.playCraps();
+                break;
             case 2:
                 HighRoller highRoller = new HighRoller(this.players.get(0));
                     highRoller.runHighRoller();

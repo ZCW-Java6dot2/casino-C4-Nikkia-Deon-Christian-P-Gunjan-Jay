@@ -1,6 +1,7 @@
-package io.zipcoder.casino.utilities;
+package io.zipcoder.casino.utlities;
 
 import io.zipcoder.casino.Player;
+import io.zipcoder.casino.utilities.HighRollerNpc;
 import junit.framework.TestCase;
 import org.junit.Test;
 
