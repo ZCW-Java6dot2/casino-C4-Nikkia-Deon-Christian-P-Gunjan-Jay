@@ -6,7 +6,9 @@ import io.zipcoder.casino.diceclasses.Die;
 import io.zipcoder.casino.utilities.HighRollerNpc;
 import io.zipcoder.casino.utilities.HighRollerPlayer;
 import io.zipcoder.casino.utilities.Console;
+import io.zipcoder.casino.utilities.Menu;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 
@@ -21,7 +23,7 @@ public class HighRoller {
     private ArrayList<HighRollEntrant> winners;
     private HighRollEntrant winningPlayer;
     private static Console console = new Console(System.in, System.out);
-
+    private Menu menu = new Menu();
 //    public static void main(String[] args) {
 //        Player player = new Player();
 //        HighRoller highRoller = new HighRoller(player);
@@ -30,12 +32,12 @@ public class HighRoller {
 
 
     public HighRoller(Player player) {
-        Player player2 = new Player("Zack", 500.0);
-        Player player3 = new Player("Cody", 500.0);
-        Player player4 = new Player("Willow", 500.0);
-        npc1 = new HighRollerNpc(player2);
-        npc2 = new HighRollerNpc(player3);
-        npc3 = new HighRollerNpc(player4);
+        Player jack = new Player("Dealers", 500.0);
+        Player cody = new Player("Dealers", 500.0);
+        Player willow = new Player("Dealers", 500.0);
+        npc1 = new HighRollerNpc(jack);
+        npc2 = new HighRollerNpc(cody);
+        npc3 = new HighRollerNpc(willow);
         dice = new Die(6);
         this.player1 = new HighRollerPlayer(player);
         player1.setActiveRoller(true);
@@ -49,15 +51,19 @@ public class HighRoller {
     }
 
     public void gameStart() {
+        if (player1.getPlayer().getBalance() <= 0) {
+            System.out.println("You to broke to play this game");
+            menu.displayCardOrDiceMenu(0);
+        } else {
         System.out.println("Welcome to High Roller");
-        Double userInput = console.getDoubleInput("\nPlace your bet \n");
+        Double userInput = console.getDoubleInput("your balance is " + player1.getPlayer().getBalance() + "\nPlace your bet \n");
         if (userInput <= 0) {
             System.out.println("Nah fam not today");
             gameStart();
-//        }else if(userInput > player1.getPlayer().){
-//            System.out.println("Funny money ain't accepted here, dealer throws you out. \n");
-//            gameStart();
-        }else{
+        } else if (userInput > player1.getPlayer().getBalance()) {
+            System.out.println(player1.getPlayer().getName() + "Funny money ain't accepted here, dealer throws you out. \n" + "your balance is " + player1.getPlayer().getBalance());
+            gameStart();
+        } else {
             player1.getPlayer().setBalance(player1.getPlayer().getBalance() - userInput);
             prizePool += userInput;
             System.out.println("Npcs place your bet \n");
@@ -67,13 +73,14 @@ public class HighRoller {
             prizePool += bet3;
             Double bet4 = npcBet(npc3);
             prizePool += bet4;
-            System.out.println("player 1 " + userInput + "\n" +
-                    "player 2 " + bet2 + "\n" +
-                    "player 3 " + bet3 + "\n" +
-                    "player 4 " + bet4);
+            System.out.println(player1.getPlayer().getName() + userInput + "\n" +
+                    "The dealers fist bet is " + bet2 + "\n" +
+                    "The dealers second bet is " + bet3 + "\n" +
+                    "The dealers third bet" + bet4);
             System.out.println("\nRoll your dice \n");
             diceRollResults();
         }
+    }
 
     }
 
@@ -96,19 +103,19 @@ public class HighRoller {
 
         if (player1.getActiveRoller()) {
             player1.setCurrentRoll(diceRoll());
-            System.out.println("\n" + player1.getPlayer().getName() + "rolled " + player1.getCurrentRoll());
+            System.out.println("\n" + player1.getPlayer().getName() + " rolled " + player1.getCurrentRoll());
         }
         if (npc1.getActiveRoller()) {
             npc1.setCurrentRoll(diceRoll());
-            System.out.println("\n" + npc1.getPlayer().getName() + " rolled " + npc1.getCurrentRoll());
+            System.out.println("\n" + npc1.getPlayer().getName() + " first roll is " + npc1.getCurrentRoll());
         }
         if (npc2.getActiveRoller()) {
             npc2.setCurrentRoll(diceRoll());
-            System.out.println("\n" + npc2.getPlayer().getName() + " rolled " + npc2.getCurrentRoll());
+            System.out.println("\n" + npc2.getPlayer().getName() + " second roll is " + npc2.getCurrentRoll());
         }
         if (npc3.getActiveRoller()) {
             npc3.setCurrentRoll(diceRoll());
-            System.out.println("\n" + npc3.getPlayer().getName() + " rolled " + npc3.getCurrentRoll());
+            System.out.println("\n" + npc3.getPlayer().getName() + " third roll is " + npc3.getCurrentRoll());
         }
         checkForWinner();
 
@@ -156,7 +163,9 @@ public class HighRoller {
 
     public void announceWinner(HighRollEntrant player) {
 
-        System.out.println("\nWe have a winner! " + player.getPlayer().getName() + " Wins " + prizePool);
+        System.out.println("\nWe have a winner! " + player.getPlayer().getName() + " Wins " + prizePool + "\n");
+//        System.out.println("\nYour new balance is " + player1.getPlayer().getBalance() + prizePool);
+        restartGame();
 
     }
 
@@ -164,6 +173,15 @@ public class HighRoller {
         player.getPlayer().setBalance(player.getPlayer().getBalance() + prizePool);
         System.out.println();
         prizePool = 0.0;
+
+    }
+    public void restartGame(){
+        player1.setActiveRoller(true);
+        npc1.setActiveRoller(true);
+        npc2.setActiveRoller(true);
+        npc3.setActiveRoller(true);
+
+        gameStart();
 
     }
 

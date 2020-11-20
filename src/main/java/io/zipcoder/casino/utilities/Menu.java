@@ -106,7 +106,7 @@ public class Menu {
     {
         System.out.println("****************************");
         System.out.println("1.  Craps ");
-        System.out.println("2.  High Roller ");
+        System.out.println("2.  High Roller 1Player");
         System.out.println("3.  Go Back to previous Menu");
         System.out.println("****************************");
         Integer diceGameChoice = console.getIntegerInput("Please select the game you want to play:  ");
@@ -136,7 +136,7 @@ public class Menu {
         switch(diceGameChoice){
             case 1: //craps
             case 2:
-                HighRoller highRoller = new HighRoller(this.singlePlayer);
+                HighRoller highRoller = new HighRoller(this.players.get(0));
                     highRoller.runHighRoller();
                     break;
             case 3:
