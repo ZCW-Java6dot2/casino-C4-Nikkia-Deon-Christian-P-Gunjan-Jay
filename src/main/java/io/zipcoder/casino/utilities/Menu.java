@@ -1,8 +1,16 @@
 package io.zipcoder.casino.utilities;
 
 import io.zipcoder.casino.Player;
+
 import io.zipcoder.casino.cardclasses.GoFish;
 import io.zipcoder.casino.games.BlackJack;
+
+
+import io.zipcoder.casino.diceclasses.Craps;
+
+import io.zipcoder.casino.games.GoFish;
+
+
 
 import java.util.ArrayList;
 public class Menu {
@@ -27,20 +35,21 @@ public class Menu {
         System.out.println("******* \u001B[36m Welcome to our Casino  \u001B[0m ******* \u001B[36m ");
         System.out.println("\u001B[0m****************************************");
          Integer players= console.getIntegerInput("Please enter the number of Players :");
-//         if(players<2)
-//         {
-//             System.out.println("<<<<< Please add at least 2 Players to play >>>>>>>");
-//             this.getPlayersCount();
-//         }
-//         else {
+
              Integer playNumber =1;
+
              for (int i = 0; i < players; i++) {
                  String playerName = console.getStringInput("Please enter your name : ");
                  Double balance = console.getDoubleInput("Please enter the balance : ");
                  this.storePlayers(playerName, balance,playNumber++);
              }
+
 //         }
+        //this.selectCardOrDice();
+
+
         this.selectCardOrDice();
+
 
 
     }
@@ -54,34 +63,48 @@ public class Menu {
         this.players.add(player);
     }
 
-    public void selectCardOrDice()
+    public void intiatiateWelcome(){
+        selectCardOrDice();
+        displayCardOrDiceMenu();
+    }
+
+    public String selectCardOrDice()
     {
-        System.out.println("****************************");
-        System.out.println("1.  Card Game");
-        System.out.println("2.  Dice Game");
-        System.out.println("3.  Exit");
-        System.out.println("****************************");
-        Integer cardOrDice = console.getIntegerInput("Please select the game you want to play:  ");
-        if(cardOrDice==3)
-        {
-            System.out.print("Quiting the Casino App, Program Ending");
-            System.exit(0);
-        }
-        else
-        this.displayCardOrDiceMenu(cardOrDice);
+        String selectCD1 = "****************************\n";
+        String selectCD2 = "1.  Card Game\n";
+        String selectCD3 = "2.  Dice Game\n";
+        String selectCD4 = "3.  Exit\n";
+        String selectCD5 = "****************************";
+        String printToSelect = selectCD1 + selectCD2 + selectCD3 + selectCD4 + selectCD5;
+        System.out.println(printToSelect);
+
+
+
+        return printToSelect;
+
 
     }
 
-    public void displayCardOrDiceMenu(Integer gameSelection)
+    public void displayCardOrDiceMenu()
     {
-        if(gameSelection.equals(1))
+        Integer cardOrDice = console.getIntegerInput("Please select the game you want to play:  ");
+        //displayCardOrDiceMenu(cardOrDice);
+
+        switch(cardOrDice)
         {
-            this.displayCardMenu();
+            case 1 : this.displayCardMenu();
+                     break;
+            case 2 : this.displayDiceMenu();
+                     break;
+            case 3 :
+                System.out.print("Quiting the Casino App, Program Ending");
+                System.exit(0);
+            default :
+                console.println("Wrong choice, select again");
+                displayCardOrDiceMenu();
+
         }
-        else
-        {
-            this.displayDiceMenu();
-        }
+
     }
 
     public void displayCardMenu()
@@ -130,13 +153,20 @@ public class Menu {
             case 3 :
                 this.selectCardOrDice();
                 break;
+            default:
+                console.println("Wrong choice, select again");
+                 displayDiceMenu();
         }
 
     }
 
     public void callCrapsOrHighRoller(Integer diceGameChoice) {
         System.out.println("Would call the CrapsORHighRoller");
-
+        switch(diceGameChoice){
+            case 1 : Craps craps = new Craps(this.players);
+                    craps.playCraps();
+                    break;
+        }
     }
 
 }

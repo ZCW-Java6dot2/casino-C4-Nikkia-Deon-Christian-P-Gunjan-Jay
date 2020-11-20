@@ -29,7 +29,10 @@ public class CardDeckTest {
     @Test
     public void testShuffleDeck(){
         //Given
-        Random random = new Random(50);
+        Random seed = new Random(52);
+        Integer seedGenerated = seed.nextInt(52);
+        Random random = new Random(seedGenerated);
+
         CardDeck cardDeck = new CardDeck();
         Stack<Card> expectedDeck = (Stack<Card>) (cardDeck.getDeck().clone());
         Collections.shuffle(expectedDeck, random);
@@ -41,4 +44,7 @@ public class CardDeckTest {
         //Then
         Assert.assertEquals(expectedDeck, actualDeck);
     }
+
+
+
 }
