@@ -26,12 +26,6 @@ public class Menu {
         System.out.println("******* \u001B[36m Welcome to our Casino  \u001B[0m ******* \u001B[36m ");
         System.out.println("\u001B[0m****************************************");
          Integer players= console.getIntegerInput("Please enter the number of Players :");
-//         if(players<2)
-//         {
-//             System.out.println("<<<<< Please add at least 2 Players to play >>>>>>>");
-//             this.getPlayersCount();
-//         }
-//         else {
              Integer playNumber =1;
              for (int i = 0; i < players; i++) {
                  String playerName = console.getStringInput("Please enter your name : ");

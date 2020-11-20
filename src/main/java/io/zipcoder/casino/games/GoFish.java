@@ -108,7 +108,7 @@ public class GoFish extends CardGame {
     }
 
  //Make arrayList of cards to be removed once all cards in hand has been checked
-    private Boolean extractCardsForRemoval(Player dealerPlayer, Player opponentPlayer, String opponentValue, ArrayList<Card> opponentPlayerHand, Boolean cardFound, ArrayList<Card> cardsToAddandRemove) {
+    public Boolean extractCardsForRemoval(Player dealerPlayer, Player opponentPlayer, String opponentValue, ArrayList<Card> opponentPlayerHand, Boolean cardFound, ArrayList<Card> cardsToAddandRemove) {
         for (int i = 0; i < opponentPlayerHand.size(); i++) {
             if (opponentPlayerHand.get(i).getValue().equalsIgnoreCase(opponentValue)) {
                 addCardToHand(dealerPlayer, opponentPlayerHand.get(i));
