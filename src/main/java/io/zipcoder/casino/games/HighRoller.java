@@ -22,12 +22,6 @@ public class HighRoller {
     private HighRollEntrant winningPlayer;
     private static Console console = new Console(System.in, System.out);
     private Menu menu = new Menu();
-//    public static void main(String[] args) {
-//        Player player = new Player();
-//        HighRoller highRoller = new HighRoller(player);
-//        highRoller.runHighRoller();
-//    }
-
 
     public HighRoller(Player player) {
         Player jack = new Player("Dealer1", 2000.0);
@@ -120,7 +114,6 @@ public class HighRoller {
             System.out.println("\n" + npc3.getPlayer().getName() + " third roll is " + npc3.getCurrentRoll());
         }
         checkForWinner();
-
     }
 
     public void checkForWinner() {
@@ -159,21 +152,16 @@ public class HighRoller {
             }
             diceRollResults();
         }
-
-
     }
 
     public void announceWinner(HighRollEntrant player) {
         System.out.println("\nWe have a winner! " + player.getPlayer().getName() + " Wins " + prizePool + "\n");
-
-
     }
 
     public void payOut(HighRollEntrant player) {
         player.getPlayer().setBalance(player.getPlayer().getBalance() + prizePool);
         prizePool = 0.0;
         restartGame();
-
     }
     public void restartGame(){
         Integer userInput = console.getIntegerInput("Would you like to play again? \n\n1: Yes \n2: No");
@@ -192,10 +180,5 @@ public class HighRoller {
             case 2: menu.returnToMenu(player1.getPlayer());
             break;
         }
-
-
     }
-
-
-
 }

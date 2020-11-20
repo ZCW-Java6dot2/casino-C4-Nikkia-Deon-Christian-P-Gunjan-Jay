@@ -155,21 +155,21 @@ public class Menu {
 
         }
     }
-//    public void returnToMenu(Player player){
-//        ArrayList<Player> temp = new ArrayList<>();
-//        temp.add(player);
-//        if(players.size() > 1){
-//            for (int i = 1; i < players.size(); i++) {
-//                temp.add(players.get(i));
-//            }
-//            players = temp;
-//        }else{
-//            players = temp;
-//        }
-//        selectCardOrDice();
-//    }
-//    public void returnToMenu(ArrayList<Player> returningPlayers){
-//        players = returningPlayers;
-//        selectCardOrDice();
-//    }
+    public void returnToMenu(Player player){
+        ArrayList<Player> temp = new ArrayList<>();
+        temp.add(player);
+        if(players.size() > 1){
+            for (int i = 1; i < players.size(); i++) {
+                temp.add(players.get(i));
+            }
+            players = temp;
+        }else{
+            players = temp;
+        }
+        selectCardOrDice();
+    }
+    public void returnToMenu(ArrayList<Player> returningPlayers){
+        players = returningPlayers;
+        selectCardOrDice();
+    }
 }
