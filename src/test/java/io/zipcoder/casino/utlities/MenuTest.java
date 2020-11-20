@@ -55,22 +55,22 @@ public class MenuTest {
     }*/
 
 
-    @Test
-    public void selectCardOrDiceTest(){
-        Menu menu = new Menu();
-        String selectCD1 = "****************************\n";
-        String selectCD2 = "1.  Card Game\n";
-        String selectCD3 = "2.  Dice Game\n";
-        String selectCD4 = "3.  Exit\n";
-        String selectCD5 = "****************************";
-        String expected = selectCD1 + selectCD2 + selectCD3 + selectCD4 + selectCD5;
-
-
-        String actual = menu.selectCardOrDice();
-
-        Assert.assertEquals(expected, actual);
-
-    }
+//    @Test
+//    public void selectCardOrDiceTest(){
+//        Menu menu = new Menu();
+//        String selectCD1 = "****************************\n";
+//        String selectCD2 = "1.  Card Game\n";
+//        String selectCD3 = "2.  Dice Game\n";
+//        String selectCD4 = "3.  Exit\n";
+//        String selectCD5 = "****************************";
+//        String expected = selectCD1 + selectCD2 + selectCD3 + selectCD4 + selectCD5;
+//
+//
+//        String actual = menu.selectCardOrDice();
+//
+//        Assert.assertEquals(expected, actual);
+//
+//    }
 
 
 }
