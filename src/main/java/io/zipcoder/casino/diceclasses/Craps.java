@@ -12,13 +12,7 @@ import java.util.HashMap;
 import java.util.Queue;
 
 
-//TO-DO LIST
-// - is it bad to define in class body?
-// - what's up with console? Shouldn't I be creating the wrapper instead?
-// -don't allow betting zero
-//
-// - minimumBets?
-// - unit testing!
+
 public class Craps extends DiceGame {
 
     private CrapsDisplay display = new CrapsDisplay();
@@ -79,14 +73,6 @@ public class Craps extends DiceGame {
                 }
             }
         }
-    }
-
-    public void updateDisplay(Player p){
-        String name = p.getName();
-        String passBet = crapsTable.passLineBet.getOrDefault(p, 0.0).toString();
-        String comeBet = crapsTable.comeBet.getOrDefault(p, 0.0).toString();
-        String place4Bet = crapsTable.place4.getOrDefault(p, 0.0).toString();
-        display.updateDisplay(name, passBet, comeBet, place4Bet);
     }
 
     public void rollingForPoint( int pointNumber, Player shooter) {
